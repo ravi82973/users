@@ -1,0 +1,14 @@
+
+.data-container{
+    overflow-x: hidden;
+    height: 450px;
+    scroll-behavior: smooth;
+    width: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 2px 0 2px 0;
+}
+.modal-footer {
+    padding-right: 60px;
+}
+

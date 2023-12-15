@@ -1,0 +1,135 @@
+:host {
+    color: #ffffff;
+  }
+  
+  .menu-trigger {
+    cursor: pointer;
+    padding: 10px;
+    color: #456894;
+  }
+  .menu-close {
+    cursor: pointer;
+    text-align: right;
+    padding: 10px 10px 0 0;
+  }
+  
+  .side-menu {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 250px;
+    background: #3b4653;
+    left: 0;
+  }
+  
+  .menu-item {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #dcdcdc;
+    width: 100%;
+    cursor: pointer;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      color: #c1c1c1;
+    }
+  }
+  
+  .gg-push-chevron-right-o {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100px;
+  }
+  .gg-push-chevron-right-o::after,
+  .gg-push-chevron-right-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    border-right: 2px solid;
+    top: 5px;
+    right: 5px;
+  }
+  .gg-push-chevron-right-o::after {
+    width: 6px;
+    height: 6px;
+    border-bottom: 2px solid;
+    transform: rotate(-45deg);
+    right: 9px;
+    top: 6px;
+  }
+  
+  .gg-push-chevron-left-o {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100px;
+  }
+  .gg-push-chevron-left-o::after,
+  .gg-push-chevron-left-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    border-left: 2px solid;
+    top: 5px;
+    left: 5px;
+  }
+  .gg-push-chevron-left-o::after {
+    width: 6px;
+    height: 6px;
+    border-bottom: 2px solid;
+    transform: rotate(45deg);
+    left: 9px;
+    top: 6px;
+  }
+
+  .fa-power-off {
+    color: #982020;
+   cursor: pointer;
+    font-size: 20px;
+     padding-left: 20px;
+    vertical-align: middle;
+    
+  }
+
+  // .lgrname{
+  //   color: #fff;
+  //   white-space: nowrap;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  //   width: 10px;
+  // }
+  
+ .text-muted{
+   font-size: 18px;
+   color: #fff !important ;
+ }
+ ul li a {
+  width: 20px;
+  
+  color: #bdb8d7;
+  text-decoration: none;
+  font-size: 15px
+} 
+.userProfile a:hover {
+  color: #fff;
+  background: #18a4cc;
+}
+.wrapper .sidebar ul li:hover {
+  background: #18a4cc;
+}

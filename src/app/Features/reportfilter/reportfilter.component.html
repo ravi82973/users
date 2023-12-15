@@ -1,0 +1,531 @@
+
+<!-- new -->
+
+<!-- ////////////////////////////////// REPORT STORES/////////////////////////////// -->
+
+<div class="container-fluid  d-flex justify-content-start align-items-center mt-0" >
+<div class="col-lg-12 position-relative">
+  <div class="row">
+      <div class="col-lg-3" style="width: 300px;">
+          <div class="reports-controls">
+              <div class="header">
+                  <h5 class="title m-0"><img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS</h5>
+                  <a type="button" class="close-btn ms-auto me-2" (click)="close()"><img src="../../assets/images/x_i.png" alt=""></a>
+                  <!-- <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a> -->
+              </div>
+              <div class="body">
+                  <div class="list-group">
+                  <a class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='A'}" style="border: none;" (click)="dealerData()">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-end row">
+                            <button style="display: none;"></button>
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/images/Stores.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Stores</h6>
+                                      <p class="m-0 p-0">Choose the stores or groups for  your report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='B'}" (click)="ScoreVal('score')">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/images/LT_value_icon.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start" >
+                                      <h6 class="m-0 p-0">Lifetime Value</h6>
+                                      <p class="m-0 p-0">Determine customer value ratings for your support</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='G'}" (click)="SalesScore('sale')">
+                    <div class="list-btn">
+                        <div class="d-flex align-items-center justify-content-center row">
+                            <div class="col-3"><img class="rpt-icon" src="../../assets/images/sales_icon.png" alt=""></div>
+                            <div class="col-7">
+                                <div class="text-start" >
+                                    <h6 class="m-0 p-0">Sales & Service Score</h6>
+                                    <p class="m-0 p-0">Select score period for sales and service</p>
+                                </div>
+                            </div>
+                            <div class="col-2 m-auto text-end">
+                                <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='C'}" (click)="SalesVal('sale')">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/images/sales_icon.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start" >
+                                      <h6 class="m-0 p-0">Sales & Service value</h6>
+                                      <p class="m-0 p-0">Select spend range and period for sales and service</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='D'}" (click)="ProximityVal('proximity')">
+                    <div class="list-btn">
+                        <div class="d-flex align-items-center justify-content-center row">
+                            <div class="col-3"><img class="rpt-icon" src="../../assets/images/Proximity.png" alt=""></div>
+                            <div class="col-7">
+                                <div class="text-start" >
+                                    <h6 class="m-0 p-0">Proximity</h6>
+                                    <p class="m-0 p-0">Select distance from the store where customer lives</p>
+                                </div>
+                            </div>
+                            <div class="col-2 m-auto text-end">
+                                <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='E'}"  (click)="BrandVal()">
+                      <div class="list-btn" >
+                          <div class="row d-flex align-items-center justify-content-center ">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/images/Brand_icon.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Brand</h6>
+                                      <p class="m-0 p-0">Choose the brand(s) for your report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                <a class="list-group-item list-group-item-action p-3 ps-4" [ngClass]="{'active':veh_class=='F'}"
+                    (click)="VehicleEquityVal('equity')">
+                    <div class="list-btn">
+                        <div class="d-flex align-items-center justify-content-center row">
+                            <div class="col-3"><img class="rpt-icon" src="../../assets/images/Equity.png" alt=""></div>
+                            <div class="col-7">
+                                <div class="text-start">
+                                    <h6 class="m-0 p-0">Vehicle Equity</h6>
+                                    <p class="m-0 p-0">Select the level of equity in customer's vehicle</p>
+                                </div>
+                            </div>
+                            <div class="col-2 m-auto text-end">
+                                <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                  <!-- <a  class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="row d-flex align-items-center justify-content-center">
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/Data-source.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Filters</h6>
+                                      <p class="m-0 p-0">Choose additional filters for type and status of deals</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a> -->
+                  <a class="list-group-item list-group-item-action p-3 ps-4" style="cursor: default;">
+                    <div class="form-check form-check-inline" style="font-size: 0.8rem;">
+                        <form [formGroup]="countForm" style="display: flex;"><label style="margin: 7px 12px;">Top</label>
+                            <div style="margin: 7px 12px;">
+                                <input class="form-check-input" type="radio" id="rd1" name="rowCount" formControlName="rowCount" value="100">
+                                <label for="rd1" class="form-check-label">100</label>
+                            </div>
+                            <div style="margin: 7px 12px;">
+                                <input class="form-check-input" type="radio" id="rd2" name="rowCount" value="500" formControlName="rowCount">
+                                <label for="rd2" class="form-check-label"> 500</label>
+                            </div>
+                            <div style="margin: 7px 12px;">
+                                <input class="form-check-input" type="radio" id="rd3" name="rowCount" value="1000" formControlName="rowCount">
+                                <label for="rd3" class="form-check-label"> 1000</label>
+                            </div>
+                        </form>
+                    </div>
+                  </a>
+                  </div>
+                
+
+
+              </div>
+              <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center ">
+                  <button type="button" class="btn btn-view mx-1" style="width: 50%;" (click)="apply()">View Report</button>
+                  <div class="cancel-txt" style="width: 50%;"><a (click)=" close()">Cancel</a></div>
+                  <!-- <button type="button" class="btn btn-save mx-1">Save to Favourites</button> -->
+                  </div>
+                  <!-- <div class="cancel-txt"><a (click)=" close()">Cancel</a></div> -->
+              </div>
+          </div>
+      </div>
+<!-- ////////////////////////////////// REPORT STORES/////////////////////////////// -->
+      <div class="col-lg-8 ">
+          <div class="report-stores ">
+              <div class="header text-center">
+              <div class="row mt-2 Headerfont">
+                  <div class="col-lg-6" style="white-space: nowrap;margin: 0px 3px"  *ngIf="isScore">Customer Loyalty and Value by Score</div>
+                  <div class="col-lg-11" *ngIf="isBrand">Brands</div>
+                  <div class="col-lg-3" *ngIf="isStore">Stores</div>
+                  <div class="col-lg-10" *ngIf="isSale">Customer Spend</div>
+                  <div class="col-lg-11" *ngIf="isService">Customer Score</div>
+                  <div class="col-lg-12" *ngIf="isProximity">Proximity to Dealership</div>
+                  <div class="col-lg-12" *ngIf="isVehicleEquity">Vehicle Equity</div>
+
+                  <!-- <div class="col-lg-3"></div> -->
+              </div>
+              <a type="button" class="close-btn ms-auto me-2" (click)="close()"><img src="../../assets/images/x_i.png" alt="" style="margin: 15px 10px 0px 0px;"></a>
+              </div>
+              <div class="body px-5 py-4">
+
+              <div class="row" >
+                <div class="col-lg-12 stores" *ngIf="isStore">
+
+                  <div class="col-lg-3">
+
+                    <button type="button" class="btn report-btn mb-10" value="0"
+                    [ngClass]="{active: (selectedAttributes.length == storesList.length),'inactive' :(selectedAttributes.length != storesList.length) }"
+                  (click)="allDealerslist('0')">All Stores</button>
+
+                  </div>
+
+<!-- 
+                  <div>
+                      <div *ngFor="let x of Regions">
+                        <button type="button" class="btn report-btn"   [ngClass]="{active: selectedRegions.indexOf(x.sg_id) >= 0,'inactive' :(selectedRegions.indexOf(x.sg_id) <0 )}"
+                            (click)="getStoresData($event,x)">{{x.sg_name}}</button>
+
+                      </div>
+                  </div> -->
+
+                  <div class="stores-grid" >
+                    <div *ngFor="let str of storesList;let i=index">
+                      <button type="button" class="btn report-btn"   [ngClass]="{active: selectedAttributes.indexOf(str.AS_ID) >= 0,'inactive' :(selectedAttributes.indexOf(str.AS_ID) <0 )}"
+                        (click)="dealerlist($event,str)">{{str.DEALER_NAME}}</button>
+                    </div>
+
+                  </div>
+
+                </div>
+                   <div class="row grp-brands">
+
+                      <div class="row mb-4 storeBrand" *ngIf="isBrand">
+
+                        <div class="col-lg-3">
+
+                            <button type="button" class="btn report-btn mb-10" value="0"
+                            [ngClass]="{active: (selectedBrandsNames.length == brandsList.length),'inactive' :(selectedBrandsNames.length != brandsList.length)}"
+                          (click)="allBrandslist('0')">All Brands</button>
+        
+                          </div>
+
+                        <div class="col-lg-3" *ngFor="let br of brandsList;let i=index">
+                          <div>
+                            <button type="button" class="btn report-btn"
+                              [ngClass]="{active: selectedBrandsNames.indexOf(br.brand_name) >= 0,'inactive' :(selectedBrandsNames.indexOf(br.brand_name) < 0)}"
+                              (click)="selectBrand(br)">{{br.brand_name}}</button>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <div style="overflow-x:hidden ;" *ngIf="isSale">
+                      <div class="row auto_w range mt-1" >
+                        <div >
+                            <div class="range_txt">
+                                <a style="text-decoration:underline;">MTD</a>
+                                <a style="text-decoration:underline;">QTD</a>
+                                <a style="text-decoration:underline;">YTD</a>
+                                <a style="text-decoration:underline;">Last Month</a>
+                                <a style="text-decoration:underline;color: #2b91f0;"><mark>Last Year</mark></a>
+                            </div>
+
+                            <!-- <div class="d-flex justify-content-between align-items-center">
+                                <div class="range_tooltip my-3">$22,000</div>
+                                <div class="range_tooltip my-3">$22,000</div>
+                            </div>
+                            <div class="range_bar"></div> -->
+                            <ngx-slider [(value)]="salesFrom" [(highValue)]="salesTo" [(value)]="saleValue" [(highValue)]="SalehighValue" [options]="options"></ngx-slider>
+                          
+                            <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;">Sales</p>
+                        </div>
+
+                        <div class="col-lg-8 ">
+                            <div class="report-sales">
+                                <div class="Salesheader text-center">
+                                    
+                                </div></div></div>
+
+                      </div>
+
+                      
+
+                       <!-- service -->
+                       <div class="row auto_w range " >
+                        <div >
+                            <div class="range_txt">
+                                <a style="text-decoration:underline;">MTD</a>
+                                <a style="text-decoration:underline;">QTD</a>
+                                <a style="text-decoration:underline;color:#2b91f0;">YTD</a>
+                                <a style="text-decoration:underline;">Last Month</a>
+                                <a style="text-decoration:underline;">Last Year</a>
+                            </div>
+
+                            <!-- <div class="d-flex justify-content-between align-items-center">
+                                <div class="range_tooltip my-3">$22,000</div>
+                                <div class="range_tooltip my-3">$22,000</div>
+                            </div>
+                            <div class="range_bar"></div> -->
+                            <ngx-slider [(value)]="servicesFrom" [(highValue)]="servicesTo" [(value)]="serviceValue" [(highValue)]="servicehighValue" [options]="options1"></ngx-slider>
+
+                            <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;">Service</p>
+                        </div>
+                      </div>
+                    </div>
+
+                        <!-- SalesScore -->
+
+                        <div style="overflow-x: hidden;" *ngIf="isService" class="scoresale">
+                            <div class="row auto_w range mt-1" >
+                              <div >
+                                  <div class="range_txt">
+                                      <a style="text-decoration:underline;">MTD</a>
+                                      <a style="text-decoration:underline;">QTD</a>
+                                      <a style="text-decoration:underline;">YTD</a>
+                                      <a style="text-decoration:underline;">Last Month</a>
+                                      <a style="text-decoration:underline;color: #2b91f0;"><mark>Last Year</mark></a>
+                                  </div>
+    
+                                  <!-- <div class="d-flex justify-content-between align-items-center">
+                                      <div class="range_tooltip my-3">$22,000</div>
+                                      <div class="range_tooltip my-3">$22,000</div>
+                                  </div>
+                                  <div class="range_bar"></div> -->
+                                  <!-- <ngx-slider [(value)]="salesFrom1" [(highValue)]="salesTo1" [(value)]="saleValue1" [(highValue)]="SalehighValue1" [options]="optionsscore"></ngx-slider> -->
+                                  <ngx-slider [(value)]="salesScoreFrom" [(highValue)]="salesScoreTo" [(value)]="salesScoreValue" [(highValue)]="salesScorehighValue"  [options]="optionsscore"></ngx-slider>
+    
+    
+                                  <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;">Sales</p>
+                              </div>
+    
+                              <div class="col-lg-8 ">
+                                  <div class="report-sales">
+                                      <div class="Salesheader text-center">
+    
+                                      </div></div></div>
+    
+                            </div>
+    
+    
+    
+                             <!-- service -->
+                             <div class="row auto_w range " >
+                              <div >
+                                  <div class="range_txt">
+                                      <a style="text-decoration:underline;">MTD</a>
+                                      <a style="text-decoration:underline;">QTD</a>
+                                      <a style="text-decoration:underline;color:#2b91f0;"><mark>YTD</mark></a>
+                                      <a style="text-decoration:underline;">Last Month</a>
+                                      <a style="text-decoration:underline;">Last Year</a>
+                                  </div>
+    
+                                  <!-- <div class="d-flex justify-content-between align-items-center">
+                                      <div class="range_tooltip my-3">$22,000</div>
+                                      <div class="range_tooltip my-3">$22,000</div>
+                                  </div>
+                                  <div class="range_bar"></div> -->
+                                  <ngx-slider [(value)]="serviceScoreFrom" [(highValue)]="serviceScoreTo" [(value)]="serviceScoreValue" [(highValue)]="serviceScorehighValue" [options]="optionsscore"></ngx-slider>
+    
+                                  <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;">Service</p>
+                              </div>
+                            </div>
+    
+                          </div>
+    
+
+                        <!-- Proximity -->
+                      <div class="row auto_w range mt-5 proxmate" *ngIf="isProximity">
+
+                        <div >
+
+
+                          <!-- <div class="d-flex justify-content-between align-items-center">
+                              <div class="range_tooltip my-3">$22,000</div>
+                              <div class="range_tooltip my-3">$22,000</div>
+                          </div>
+                          <div class="range_bar"></div> -->
+                          <!-- <ngx-slider   [(highValue)]="highValue" [options]="options"></ngx-slider> -->
+                          <ngx-slider  [(value)]="proXvalue" [options]="optionProx"></ngx-slider>
+
+
+                          <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;">Miles from Customer Residence</p>
+                      </div>
+
+                      </div>
+
+                      <!-- lifetime -->
+                      <div class="col-lg-12 col-12 mt-0" *ngIf="isScore">
+                        <div class="report-filters" >
+                            <!-- <div class="header">
+                                <h5 class="title m-0"><img src="" alt="">Report Filters</h5>
+                                <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+                            </div> -->
+                            <div class="body py-2" >
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0" style="font-size: 0.9rem;margin-top: 33px !important;">All Customers:</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn " id="btnAllInc" value="0" [ngClass]="{'active' :(isAllCust == true)}" (click)="IsAllClicked('Y')">Include</button>
+                                        <button type="button" class="btn report-btn " id="btnAllExc" (click)="IsAllClicked('N')" [ngClass]="{'active' :( isAllCust == false )}" >Exclude</button>
+                                    </div>
+                                </div>
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0" style="margin-top: 33px !important;"><b>VIP</b> (90+):</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn" id="btnVipInc" value="90" [ngClass]="{'vipcls' : isAllCust == true,'vipcls' : vipcls == true}" (click)="IsScoreClicked('V','I')">Include</button>
+                                        <button type="button" class="btn report-btn" id="btnVipExc" value="90"  [ngClass]="{'vipcls' : isAllCust == false ,'vipcls' : vipcls == false}" (click)="IsScoreClicked('V','E')">Exclude</button>
+
+                                    </div>
+                                </div>
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0" style="margin-top: 33px !important;"><b>Platinum</b> (80-89):</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn" id="btnPlaInc" value="80" [ngClass]="{'platcls' : isAllCust == true ,'platcls' : platcls == true }" (click)="IsScoreClicked('P','I')">Include</button>
+                                        <button type="button" class="btn report-btn " id="btnPlaExc" value="89" [ngClass]="{'platcls' : isAllCust == false ,'platcls' : platcls == false }" (click)="IsScoreClicked('P','E')">Exclude</button>
+
+                                    </div>
+                                </div>
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0" style="margin-top: 33px !important;"><b>Emerald</b> (70-79):</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn " id="btnEmeInc" value="70" [ngClass]="{'emecls' : isAllCust == true,'emecls' : emecls == true }" (click)="IsScoreClicked('E','I')">Include</button>
+                                        <button type="button" class="btn report-btn" id="btnEmeExc" value="79" [ngClass]="{'emecls' : isAllCust == false ,'emecls' : emecls == false }" (click)="IsScoreClicked('E','E')">Exclude</button>
+                                    </div>
+                                </div>
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0" style="margin-top: 33px !important;"><b>Gold</b> (55-69):</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn" id="btnGoldInc" value="55" [ngClass]="{'goldcls' : isAllCust == true ,'goldcls' : goldcls == true}" (click)="IsScoreClicked('G','I')">Include</button>
+                                        <button type="button" class="btn report-btn" id="btnGoldExc" value="69" [ngClass]="{'goldcls' : isAllCust == false ,'goldcls' : goldcls == false}" (click)="IsScoreClicked('G','E')">Exclude</button>
+                                    </div>
+                                </div>
+                                <div class="filter px-5">
+                                    <div class="col-4"><h6 class="m-0 p-0"  style="margin-top: 33px !important;"><b>New Customers</b>:</h6></div>
+                                    <div class="col-8 report-grid mt-4">
+                                        <button type="button" class="btn report-btn" id="btnNewInc" value="0" [ngClass]="{'newcls' : isAllCust == true,'newcls' : newcls == true  }" (click)="IsScoreClicked('N','I')">Include</button>
+                                        <button type="button" class="btn report-btn" id="btnNewExc" value="55" [ngClass]="{'newcls' : isAllCust == false ,'newcls' : newcls == false }" (click)="IsScoreClicked('N','E')">Exclude</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                   <!-- Vehicle equity -->
+                   <div class="row auto_w range mt-0 vehicle" *ngIf="isVehicleEquity">
+                    <div >
+
+
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                            <div class="range_tooltip my-3">$22,000</div>
+                            <div class="range_tooltip my-3">$22,000</div>
+                        </div>
+                        <div class="range_bar"></div> -->
+                        <ngx-slider  [(value)]="LoanXvalue1" [options]="optionVehicle1"></ngx-slider>
+                        <div class="range_txt" style="margin-top:-4%;">
+                          <a style="color: #000;margin-left: -40px;">- Negative</a>
+                          <a></a>
+                          <a></a>
+                          <a></a>
+                          <a style="color: #000;margin-right: -36px;">+ Positive</a>
+                      </div>
+
+                        <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;margin-top: -8%;">Loan Payment Position</p>
+                    </div>
+
+                   
+
+
+                  </div>
+
+                  <div class="row auto_w range months"  *ngIf="isVehicleEquity">
+                    <div style="margin-top: -24%;">
+                            <div class="range_txt">
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <a></a>
+                            <!-- <a style="text-decoration:underline; margin-top: 10%;">Last Year</a> -->
+                        </div>
+
+                        <ngx-slider  [(value)]="LoanXvalue2" [options]="optionVehicle2"></ngx-slider>
+                        <div class="range_txt" style="margin-top:-4%;">
+                          <a style="color: #000; margin-left:-44px;">Month Remaining on Lease</a>
+
+                      </div>
+
+                        <p style="text-align: center;font-weight: bold;font-size: 16px; font-family: RobotoCondensed-Bold;margin-top: -6%;">Lease Pull Ahead</p>
+                    </div>
+                  </div>
+             
+                 
+
+
+                  </div>
+                  <!-- ///////////////////////////////////// RANGE ///////////////////////////////// -->
+
+
+
+
+              </div>
+              </div>
+
+              <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center justify-content-center">
+                  <!-- <button type="button" class="btn btn-sm-save mx-2" (click)="apply()">Save</button>
+                  <div class="cancel-txt mb-2 mx-2"><a  class="m-0 p-0" (click)=" close()">Cancel</a></div> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ////////////////////////////////// REPORT GROUPING /////////////////////////////// -->
+
+
+<!-- ////////////////////////////////// REPORT FILTERS /////////////////////////////// -->
+
+
+
+

@@ -1,0 +1,22 @@
+<img src="../../assets/images/X1_logo.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;">
+<span id="collapseTwo" class="collapse" >
+  <img *ngIf="modIds.Xtract > 0" src="../../assets/images/Xtract.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;" (click)="OpenUrl('1')">
+  <img *ngIf="modIds.Xchange > 0" src="../../assets/images/Xchange.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;" (click)="OpenUrl('2')">
+  <!-- <img *ngIf="modIds.Xiom > 0" src="../../assets/images/Xiom.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;"> -->
+  <img *ngIf="modIds.Touch > 0" src="../../assets/images/Touch.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;" (click)="OpenUrl('3')">
+  <img *ngIf="modIds.Tracs > 0" src="../../assets/images/trax_btn.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;" (click)="OpenUrl('4')">
+  <img *ngIf="modIds.Xperience > 0" src="../../assets/images/6Pixnew.png" alt="" style="margin-left: 1rem;margin-top:1%;cursor: pointer;" (click)="OpenUrl('5')">
+</span>
+<span *ngIf="rightIcon">
+  <a for="collapseTwo" data-toggle="collapse" href="#collapseTwo"
+  aria-expanded="true" aria-controls="collapseTwo"
+  aria-hidden="true" (click)=" RightIcon()"><img src="../../assets/images/rgt_arw.png" alt="" style="margin-left: 0.5rem;margin-top:1%;cursor: pointer;"></a>
+</span>
+<span *ngIf="leftIcon">
+  <a for="collapseTwo" data-toggle="collapse" href="#collapseTwo"
+  aria-expanded="true" aria-controls="collapseTwo"
+  aria-hidden="true" (click)=" LeftIcon()"><img src="../../assets/images/lft_arw.png" alt="" style="margin-left: 0.5rem;margin-top:1%;cursor: pointer;"></a>
+</span>
+
+
+

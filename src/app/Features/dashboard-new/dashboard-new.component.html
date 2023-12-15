@@ -1,0 +1,355 @@
+
+<app-header></app-header>
+<!-- <div class="container mt-4">
+    <div class="col-lg-6 mx-auto">
+      <div class="card  p-6 shadow rounded">
+        <div class="card-header">
+        <h4 style="margin:5px; color: #fff;"><b>Xiom</b></h4>
+        </div>
+        <div class="card-body" *ngFor="let count of TotalCount">
+          <h6>Customer Records&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{count.TotalCnt | number }}</b></h6>
+          <h6>Xiom Analyzed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{count.AnalyzedCnt | number}}</b></h6>
+          <h6>New Customers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{count.NewCustCnt | number}}</b></h6>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div> -->
+
+
+  <!-- dashboard new -->
+  <!-- <div class="container-fluid" style="background-image: url('../../assets/images/bg_.jpg');height: 100vh;overflow: auto;background-size: 100% 100%;"> -->
+  <div class="container-fluid" id="XiomCustomerInsights" style="background-image: url('../../assets/images/bg_.jpg');height: 100vh;background-size: 100% 100%;overflow: auto;">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="background-image">
+        <app-xiomicon></app-xiomicon>
+      <!-- <main class="col-lg-12 ms-auto"> -->
+        <div class="auto_w">
+          <div class="row search-bar p-3 collapse show" id="collapseOne" role="tabpanel"  aria-labelledby="filterHeading" data-bs-parent="#filterHeading" >
+            <div class="col-lg-2 col-6 d-flex align-items-center justify-content-center text-end act-fltr" style="margin: 0px 0px 10px 0px;">
+              <div style="line-height: 13px;">
+                <!-- <p class="m-0"> All Stores  </p> -->
+                <!-- <p class="m-0">Filters</p> -->
+                <select (change)="changeStore($event)" class="storecls">
+                    <option value="0"><p class="m-0"> All Stores  </p></option>
+                    <option *ngFor="let store of storeList" value="{{store.AS_ID}}"  >
+                        {{store.DEALER_NAME}}
+                         </option>
+                </select>
+
+              </div>
+              <h1 class="m-0 ms-3"></h1>
+            </div>
+            <div class="col-lg-3 col-6 d-flex align-items-center justify-content-center text-end" style="margin: -11px 0px -1px 0px;">
+              <div style="line-height: 13px;margin: 0px 0px 0px 123px;">
+                <p class="m-0">Total Customer Profiles</p>
+                <!-- <p class="m-0">Profiles</p> -->
+              </div>
+              <h1 class="m-0 ms-3" style="color:#2b91f0"> {{TotalCount.Totalcust | number}}</h1>
+            </div>
+            <div class="col-lg-3 col-6 d-flex align-items-center justify-content-end" style=" margin: 0px 0px 10px;">
+              <div class="">
+                <!-- <i class="fa fa-cloud-download me-4" aria-hidden="true"></i> -->
+                <!-- <i class="fa fa-floppy-o me-3" aria-hidden="true"></i> -->
+                <!-- <img src="../../assets/images/dwn_icon.png" alt=""> -->
+              </div>
+            </div>
+            <div class="col-lg-4 col-12 d-flex align-items-center justify-content-end" style=" margin: 0px 0px 10px 0px;">
+              <!-- <form class="navbar-form" role="search" *ngIf="showSearchBox == 'Y'"
+                style="border: 1px solid #00000026;border-radius:50px;width:100%;margin-right:2rem">
+                <div class="input-group search">
+                  <div class="input-group-btn">
+                    <button class="btn btn_search" type="submit"></button>
+                  </div>
+                  <input class="form-control" #Search placeholder="Search" type="text">
+                </div>
+              </form> -->
+            </div>
+          </div>
+          <div class="separator my-4 " role="tab" id="filterHeading">
+            <!-- <h6 class="m-0 me-3 "><span>
+
+
+                          <button class="  accordion-button collapsed  btn-arrow" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> </button>
+
+                        </span> </h6> -->
+            <h6 class="m-0 me-3" style="color:white;"><span>
+
+                <!-- <i class="fa fa-chevron-up ps-2 pe-1 " ></i> -->
+                <!-- <a href="#collapseOne" data-bs-toggle="collapse"
+                data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+                aria-hidden="true"><i class="fa fa-chevron-up ps-2 pe-1" ></i></a> -->
+
+              </span> RATING</h6>
+
+
+
+            <div class="line"></div>
+
+
+          </div>
+          <div class="row ">
+            <div class="rating col-6">
+                <div>
+                    <div class="rt_hd _chineseblack">
+                        <h6 class="m-0 p-0">VIP</h6>
+                    </div>
+                    <div class="rt_bd">
+                        <h5>{{TotalCount.Vipcust | number}} <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.Vval > 0">
+                            <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.Vval < 0"></h5>
+                        <a class="cursorcls" (click)="viewButton('V')">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rating col-6">
+                <div>
+                    <div class="rt_hd _lavendergray">
+                        <h6 class="m-0 p-0">PLATINUM</h6>
+                    </div>
+                    <div class="rt_bd">
+                        <h5>{{TotalCount.platinumCust | number}}<img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.Pval > 0">
+                            <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.Pval < 0"></h5>
+                        <a class="cursorcls" (click)="viewButton('P')">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rating col-6">
+                <div>
+                    <div class="rt_hd _metallicgreen">
+                        <h6 class="m-0 p-0">EMERALD</h6>
+                    </div>
+                    <div class="rt_bd">
+                        <h5>{{TotalCount.EmeraldCust | number}}<img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.Eval > 0">
+                            <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.Eval < 0"></h5>
+                        <a class="cursorcls" (click)="viewButton('E')">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rating col-6">
+                <div>
+                    <div class="rt_hd _harvestgold">
+                        <h6 class="m-0 p-0">GOLD</h6>
+                    </div>
+                    <div class="rt_bd">
+                        <h5>{{TotalCount.GoldCust | number}} <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.Gval > 0">
+                            <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.Gval < 0"></h5>
+                        <a class="cursorcls" (click)="viewButton('G')">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rating col-6">
+                <div>
+                    <div class="rt_hd _robinblue">
+                        <h6 class="m-0 p-0">NEW</h6>
+                    </div>
+                    <div class="rt_bd">
+                        <h5>{{TotalCount.NewCust | number}} <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.Nval > 0">
+                            <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.Nval < 0">
+                        </h5>
+                        <a class="cursorcls" (click)="viewButton('N')">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator my-4 " role="tab" id="filterHeading">
+          <!-- <h6 class="m-0 me-3 "><span>
+
+
+                        <button class="  accordion-button collapsed  btn-arrow" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> </button>
+
+                      </span> </h6> -->
+          <h6 class="m-0 me-3" style="color:white;"><span>
+
+              <!-- <i class="fa fa-chevron-up ps-2 pe-1 " ></i> -->
+              <!-- <a href="#collapseOne" data-bs-toggle="collapse"
+              data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+              aria-hidden="true"><i class="fa fa-chevron-up ps-2 pe-1" ></i></a> -->
+
+            </span> TYPE</h6>
+
+
+
+          <div class="line"></div>
+
+
+        </div>
+        <!-- ///////////////////////////////////// TYPE ///////////////////////////////// -->
+        <div class="row mt-3">
+          <div class="type col-6">
+              <div>
+                  <div class="typ_hd">
+                      <h6 class="m-0 p-0">OWNED</h6>
+                  </div>
+                  <div class="typ_bd">
+                      <h5>{{TotalCount.OwnedVehicles | number}}
+                        <!-- <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt=""> -->
+                    </h5>
+                      <a class="cursorcls" (click)="viewButton('O')">View</a>
+                  </div>
+              </div>
+          </div>
+          <div class="type col-6">
+              <div>
+                  <div class="typ_hd">
+                      <h6 class="m-0 p-0">NEW</h6>
+                  </div>
+                  <div class="typ_bd">
+                      <h5>{{TotalCount.NewVehicles | number}}
+                        <!-- <img src="../../assets/images/Arrow_red.png" class="ms-3" alt=""> -->
+                    </h5>
+                      <a class="cursorcls" (click)="viewButton('NEW')">View</a>
+                  </div>
+              </div>
+          </div>
+          <div class="type col-6">
+              <div>
+                  <div class="typ_hd">
+                      <h6 class="m-0 p-0">USED</h6>
+                  </div>
+                  <div class="typ_bd">
+                      <h5>{{TotalCount.UsedVehicles | number}}
+                        <!-- <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt=""> -->
+                    </h5>
+                      <a class="cursorcls" (click)="viewButton('USED')">View</a>
+                  </div>
+              </div>
+          </div>
+          <div class="type col-6">
+              <div>
+                  <div class="typ_hd">
+                      <h6 class="m-0 p-0">LEASE</h6>
+                  </div>
+                  <div class="typ_bd">
+                    <h5>{{TotalCount.LeaseVehicles | number}} 
+                        <!-- <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt=""> -->
+                    </h5>
+                    <a class="cursorcls" (click)="viewButton('L')">View</a>
+                </div>
+              </div>
+          </div>
+          <div class="type col-6">
+              <div>
+                  <div class="typ_hd">
+                      <h6 class="m-0 p-0">MULTI VEHICLE</h6>
+                  </div>
+                  <div class="typ_bd">
+                      <h5>{{TotalCount.multiVehicles | number}}
+                        <!-- <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt=""> -->
+                    </h5>
+                      <a class="cursorcls" (click)="viewButton('Multi')">View</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row mt-3">
+        <div class="type col-6">
+            <div>
+                <div class="typ_hd">
+                    <h6 class="m-0 p-0">SALES ONLY</h6>
+                </div>
+                <div class="typ_bd">
+                    <h5>{{TotalCount.Sales | number}} 
+                        <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.SalesVal > 0">
+                        <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.SalesVal < 0"></h5>
+                    <a class="cursorcls" (click)="viewButton('Sales')">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="type col-6">
+            <div>
+                <div class="typ_hd">
+                    <h6 class="m-0 p-0">SERVICE ONLY</h6>
+                </div>
+                <div class="typ_bd">
+                    <h5>{{TotalCount.Service | number}} <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.ServiceVal > 0">
+                    <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.ServiceVal < 0"></h5>
+                    <a class="cursorcls" (click)="viewButton('Service')">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="type col-6">
+            <div>
+                <div class="typ_hd">
+                    <h6 class="m-0 p-0">SALES & SERVICE</h6>
+                </div>
+                <div class="typ_bd">
+                    <h5>{{TotalCount.SalesAndService | number}} <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt="" *ngIf="TotalCount.SalesService > 0">
+                        <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" *ngIf="TotalCount.SalesService < 0"></h5>
+                    <a class="cursorcls" (click)="viewButton('SS')">View</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="type col-6">
+            <div>
+                <div class="typ_hd">
+                    <h6 class="m-0 p-0">GENDER</h6>
+                </div>
+                <div class="typ_bd">
+                    <div class="row p-4">
+                        <div class="col-6">
+                            <div class="w-100 d-flex">
+                                <div class="w-70 d-flex flex-column justify-content-center align-items-center"
+                                    style="width: 60%;">
+                                    <h4>Male</h4>
+                                    <h5>{{TotalCount.Mval}}% </h5>
+                                </div>
+                                <div class="w-30 d-grid align-items-center justify-content-center"
+                                    style="width: 40%;"><img src="../../assets/images/Arrow_grn.png" alt="" style="margin: 6px 0 0 17px;" *ngIf="TotalCount.Mval > 0">
+                                    <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" style="margin: 6px 0 0 17px;" *ngIf="TotalCount.Mval < 0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="w-100 d-flex">
+                                <div class="w-70 d-flex flex-column justify-content-center align-items-center"
+                                    style="width: 60%;margin-right: 5px;">
+                                    <h4>Female</h4>
+                                    <h5>{{TotalCount.Fval}}% </h5>
+                                </div>
+                                <div class="w-30 d-grid align-items-center justify-content-center"
+                                    style="width: 40%;"><img src="../../assets/images/Arrow_grn.png" alt="" style="margin: 6px 0 0 7px;" *ngIf="TotalCount.Fval > 0">
+                                    <img src="../../assets/images/Arrow_red.png" class="ms-3" alt="" style="margin: 6px 0 0 7px;" *ngIf="TotalCount.Mval < 0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a >View</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="type col-6">
+            <div>
+                <div class="typ_hd">
+                    <h6 class="m-0 p-0">ACTIVE WITHIN LAST YR.</h6>
+                </div>
+                <div class="typ_bd">
+                    <h5>{{TotalCount.LastYearCount | number}} 
+                        <!-- <img src="../../assets/images/Arrow_grn.png" class="ms-3" alt=""> -->
+                    </h5>
+                    <a class="cursorcls" (click)="viewButton('LastYear')">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+      <!-- </main> -->
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- ///////////////////////////////////// dashboard ///////////////////////////////// -->
+<!-- <div class="container-fluid" style="background-image: url('../../assets/images/bg_.jpg');height: 100vh;overflow: auto;background-size: 100% 100%;">
+
+  <div class="row">
+
+  </div>
+</div> -->

@@ -1,0 +1,89 @@
+.bg-white{background: #ffffff !important;}
+.heading{font-size: 1rem; text-transform: uppercase; color: #000;
+}
+.prof{width:fit-content; margin-right: 10px; display: flex; align-items: center;
+.prof_pic{width: 45px; height: 45px; border-radius: 50px; border: 1px solid #ccc; margin-right: 5px;;}
+.text{
+    .grt{font-size: .6rem; color: #000;  font-family: 'GothamMedium';}
+    .name{font-size: .7rem;color:#000;  font-family: 'GothamMedium';
+        span{text-transform: capitalize; color: #ccc;}
+    }
+}
+}
+
+.offcanvas-header .btn-close{
+    margin: 0 !important;
+}
+
+/* Navbar*/
+
+.navbar-brand {
+ padding-top: .75rem;
+ padding-bottom: .75rem;
+ font-size: 1rem;
+ //background-color: rgba(0, 0, 0, .25);
+ //box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+padding:0 5px;
+}
+
+.navbar .form-control {
+ padding: .75rem 1rem;
+ border-width: 0;
+ border-radius: 0;
+}
+.navbar .navbar-toggler-icon {
+    background: url("../../assets/images/menu.png") 50%;
+}
+.navbar-toggler{
+    border: 1px solid #333 !important;
+
+}
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+
+  #sidebar {width: 100%;background: #fff;color: #000;transition: all 0.3s;}
+  #sidebar a,
+  #sidebar a:hover,
+  #sidebar a:focus {color: #000 !important; cursor: pointer;}
+  #sidebar.active {margin-left: -250px;}
+  // #sidebar ul.components {padding: 20px 0;}
+  #sidebar a{border-bottom: 1px solid #eaedf1;}
+  #sidebar ul li a {padding: 10px 30px;font-size: .9rem;display: block;text-decoration: none;
+    text-transform: uppercase;color: #000;}
+  #sidebar ul ul li a{box-shadow: 0 0 10px 2px #e2e3e7;font-size: .8rem; text-transform: uppercase;padding-left: 60px !important;}
+  #sidebar ul ul ul li a{box-shadow: none !important;margin-left: 50px !important;font-size: .7rem;}
+  #sidebar ul li.active > a,
+  a[aria-expanded="true"] {
+    color: #000;
+    background: #fff;
+    font-family: 'Gotham\ Bold';
+  }
+  
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+  
+  a[aria-expanded="false"]::before,
+  a[aria-expanded="true"]::before {
+    content: "\f054";
+    font-family: 'FontAwesome';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-size: 0.6rem;
+    padding-top: 7px;
+  }
+  
+  a[aria-expanded="true"]::before {
+    content: '\f054'; 
+    transform: rotate(90deg);
+  }
+  
+  ul ul a {padding-left: 30px !important;background: #fff;color: #000;}

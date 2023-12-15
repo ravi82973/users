@@ -1,0 +1,209 @@
+
+<div class="container" *ngIf="signclick">
+    <div class="row justify-content-center" >
+        <div class="col-md-12 col-sm-12 signin-box">   
+            <div class="col-lg-12 col-md-12 col-sm-12 signin-form m-auto">
+
+                <h6 class="d-flex justify-content-center">Sign in to talk with our team:</h6>
+                <form [formGroup]="Strform" (ngSubmit)="onLoginSubmit()">
+                    <div class="form-group mt-3 col-lg-12 mx-auto">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email Address" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                            <div *ngIf="f['email'].errors['required']"> Please enter email address</div>
+                            <div *ngIf="f['email'].errors['email']"> Please enter valid email address</div>
+                        </div>  
+                    </div>
+                    <div class="form-group mt-2 col-lg-12 mx-auto">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                        </div>
+                    </div>
+
+                    <div class=" mt-2 signin-btn">
+                        <button class="btn btn-dark">Sign In</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-3"><label>Don't have an account?</label><span (click)="register();" >Sign Up Here.</span></div>
+
+            <hr >
+
+            <div class="mt-3"><label>Continue as a guest.</label> <span (click)="guestUser();">Click here</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="guestclick">
+    <div class="row d-flex justify-content-center" >
+        <div class="col-lg-12 col-md-12 col-sm-12 signin-box">   
+            <div class="col-lg-12 col-md-12 col-sm-12 signin-form m-auto">
+
+                <h6 class="d-flex justify-content-center">Please enter your name to <br/>continue to Chat with an Agent:</h6>
+                <form [formGroup]="guestform" (ngSubmit)="guestonSubmit()">
+                    <div class="form-group mt-3 col-lg-12 mx-auto">
+                        <input type="text" class="form-control" formControlName="username" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && gu['username'].errors }">
+                        <div *ngIf="submitted && gu['username'].errors" class="invalid-feedback">
+                            <div *ngIf="gu['username'].errors['required']">Username is required</div>
+                        </div>
+                    </div>
+
+                    <div class=" mt-2 signin-btn">
+                        <button class="btn btn-dark"  (click)="resisters();">Sign In</button>
+                    </div>
+                    <div class="mt-2">
+                        <span><a  (click)="sining();" >Cancel</a></span>
+                   </div>                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- it is a registration page -->
+
+
+
+<div class="container" *ngIf="registerclick">
+    <div class="row justify-content-center" >
+        <div class="col-lg-12 col-md-12 col-sm-12 signin-box">   
+            <div class="col-lg-12 col-md-12 col-sm-12 signin-form m-auto">
+
+                <h6 class="d-flex justify-content-center">Sign up to save your <br/> conversations with our team:</h6>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-group mt-3 col-lg-12 mx-auto">
+                        <input type="text" class="form-control" formControlName="username" placeholder="Your Name" [ngClass]="{ 'is-invalid': submitted && fu['username'].errors }">
+                        <div *ngIf="submitted && fu['username'].errors" class="invalid-feedback">
+                            <div *ngIf="fu['username'].errors['required']">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 col-lg-12 mx-auto">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email Address" [ngClass]="{ 'is-invalid': submitted && fu['email'].errors }">
+                        <div *ngIf="submitted && fu['email'].errors" class="invalid-feedback">
+                            <div *ngIf="fu['email'].errors['required']"> Please enter email address</div>
+                            <div *ngIf="fu['email'].errors['email']"> Please enter valid email address</div>
+                        </div>  
+                    </div>
+                    <div class="form-group mt-2 col-lg-12 mx-auto">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && fu['password'].errors }">
+                        <div *ngIf="submitted && fu['password'].errors" class="invalid-feedback">
+                            <div *ngIf="fu['password'].errors['required']">Password is required</div>
+                            <div *ngIf="fu['password'].errors['minlength']">Password must be at least 6 characters</div>
+                        </div>
+                    </div>
+
+                    <div class=" mt-2 signin-btn">
+                        <button class="btn btn-dark">Sign In</button>
+                       
+                    </div>
+                    <hr >
+
+            <div class="mt-3"><label>Continue as a guest.</label> <span (click)="guestUser();">Click here</span></div>
+                    <!-- <div class="mt-2">
+                         <span><a  (click)="loginclick();" >Cancel</a></span>
+                    </div>                 -->
+                </form>
+            </div>          
+        </div>
+    </div>
+</div>
+
+
+
+<!-- it is home page -->
+<div *ngIf="homeclick">
+
+<div class="col-8 mx-auto">
+
+<div style="text-align: center;padding: 8px;border-bottom: 1px solid #dee2e6;">
+    <h1 style="font-size: 1.0rem;font-family: 'GothamBold';">Welcome {{loginuser}}!</h1>
+</div>
+</div>
+<div class="col-11 mx-auto">
+<div id="scrollMe" style="height: 60vh;
+width: 100%;
+flex-direction: column;
+overflow-y: auto;
+overflow-x: hidden;
+padding: 2px 0 2px 0;" #scrollMe [scrollTop]="scrolltop">
+<div class="text-center pt-5 pb-3">
+    <p style="font-family: 'GothamMedium';">Select a department to chat with</p>
+   <div >
+    <div class="button button4" [ngClass]="{'active': item.tid == tagid}" *ngFor="let item of ptags" (click)="tagsClick(item.tid)">{{item.tname}}</div>
+    </div>  
+</div>
+<div class="mesg_chat">
+    <div *ngFor="let conUserItems of messages;">
+        <div class="rlp_det" *ngIf="conUserItems.MSG_FROM=='F' && conUserItems.MSG_TYPE=='TI'">
+            <div class="rlp_msg"><label>{{conUserItems.UserName}} , <span> {{conUserItems.MSG_CREATEDTS }}</span></label>
+                <div class="person_chat">{{conUserItems.MSG_DESC}}</div>
+            </div>
+        </div>
+        <div class="rlp_det" *ngIf="conUserItems.MSG_FROM=='F' && conUserItems.MSG_TYPE=='T'">
+            <div class="rlp_msg"><label>{{conUserItems.FromUserName}} ,<span> {{conUserItems.MSG_CREATEDTS | utcConvert : 'L'}}</span></label>
+                <div class="person_chat">{{conUserItems.MSG_DESC}}</div>
+            </div>
+        </div>
+        <div  *ngIf="conUserItems.MSG_FROM=='F' && conUserItems.MSG_TYPE=='E'" class="decoratedLine vlabelBold"><span>{{conUserItems.FromUserName}} {{conUserItems.MSG_DESC}}</span></div>
+        <div  *ngIf="conUserItems.MSG_FROM=='A' && conUserItems.MSG_TYPE=='E'" class="decoratedLine vlabelBold"><span>{{conUserItems.FromUserName}} {{conUserItems.MSG_DESC}}</span></div>
+        <div  *ngIf="conUserItems.MSG_FROM=='A' && conUserItems.MSG_TYPE=='S'" class="decoratedLine vlabelBold"><span>{{conUserItems.MSG_DESC}}</span></div>
+       
+        <div *ngIf="conUserItems.MSG_FROM=='A' && conUserItems.MSG_TYPE=='T'" class="pers_det">
+            <div class="d-flex align-items-end">
+                <div class="person_pic"></div>
+                <label>{{conUserItems.FromUserName}}, <span>{{conUserItems.MSG_CREATEDTS | utcConvert : 'L'}}</span></label>   
+            </div>          
+            <div class="person_msg"><div class="person_chat">{{conUserItems.MSG_DESC}} </div> </div>
+        </div>
+
+    </div>
+   
+   
+    
+</div>
+
+</div>
+<!-- <div class="msg_div"  *ngIf="isButtonVisible">
+    <input type="text"  placeholder="Type Your Message" (keydown.enter)="send($event)" #usermessage >
+    <div style="position: absolute;top:10px;right:30px;margin:0;">      
+        <img src="../../../assets/images/send.png" alt="" (click)="myClickFunction()" style="cursor: pointer;"/>                                                
+      </div>  
+  </div> -->
+</div>
+  <div class="msg_text_box"  *ngIf="isButtonVisible">
+
+    <div class="msg_box">
+
+        <!-- <div class="smiley"><img src="assets/images/smiley.png"></div> -->
+
+        <textarea rows="2" placeholder="Type a message" style="resize: none; height: 22px;" (keydown.enter)="send($event)" #usermessage></textarea>
+
+        <!-- <a><img src="../../assets/images/pin.png" style="margin-top:-5px;"></a> -->
+        <a (click)="myClickFunction()"><img src="../../assets/images/Send_Icon.png" style="margin-top:-5px;"></a>
+
+    </div>
+
+ 
+
+</div>
+<div style="display: table;width: 100%;padding: 0rem 1rem 0rem 0.0rem;">
+    <div class="form-group text-center" >  
+     <a class="btn btn-link" *ngIf="isButtonEnd" (click)="ExitChat();">End Conversation</a> 
+    <a class="btn btn-link" *ngIf="isSignoutVisible" (click)="Signup();">Sign Out</a> 
+  
+</div>
+</div>
+</div>
+
+          
+
+
+
+
+

@@ -1,0 +1,244 @@
+<app-header></app-header>
+<div
+  class="container"
+  style="font-family: Roboto-Regular; background-color: #e6e8ed; height: 85vh"
+>
+  <div style="margin-top: 4rem">
+    <h4 class="bldtxt">SEND MESSAGE:</h4>
+  </div>
+  <div class="row">
+    <div class="col-3 form-group">
+      <label class="headtxt" for="phone">Select Store</label>
+      <select
+        class="form-select txt"
+        aria-label="Default select example"
+        [(ngModel)]="store"
+        (change)="selectDropdown()"
+      >
+        <option value="0" selected disabled>Select</option>
+        <option *ngFor="let i of stores.response" value="{{ i.TWILIO_NUMBER }}">
+          {{ i.AS_DEALERNAME }}
+        </option>
+      </select>
+      <span
+        style="font-size: 0.7rem; color: red"
+        *ngIf="storeError == true && store == 0"
+        >Please Select Store</span
+      >
+    </div>
+    <div
+      class="btn btn-primary col-1"
+      style="height: 40px; margin-top: 1.2rem"
+      *ngIf="templateBtn"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      (click)="tempClick()"
+    >
+      Templates
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group mt-2 col-3">
+      <label class="headtxt" for="phone">Enter Phone Numbers</label>
+      <textarea
+        class="form-control"
+        (keypress)="keyPressAlpha($event)"
+        pattern="[0-9]+([-\,][0-9]+)?"
+        [(ngModel)]="enternumber"
+        id="txtarea"
+        rows="6"
+      ></textarea>
+      <span
+        class="mx-4"
+        style="font-size: 0.7rem; color: red"
+        *ngIf="numErr == true && enternumber == ''"
+      >
+        Please Enter Phone Numbers</span
+      >
+      <span
+        class="mx-4"
+        style="font-size: 0.7rem; color: red"
+        *ngIf="clkErr == true"
+      >
+        Click Process Button To Continue.</span
+      >
+    </div>
+    <div
+      class="btn btn-primary col-1"
+      style="height: 40px; margin-top: 9rem"
+      (click)="proceedClk()"
+    >
+      Process
+    </div>
+    <div
+      class="form-group mt-2 col-3"
+      *ngIf="txtShow && correctNums.length != 0"
+    >
+      <label class="headtxt" for="phone">Correct Phone Numbers</label>
+      <textarea
+        class="form-control"
+        id="txtarea"
+        rows="6"
+        [(ngModel)]="phonenumber"
+        readonly
+      ></textarea>
+    </div>
+    <div
+      class="form-group mt-2 col-2"
+      *ngIf="txtShow && correctNums.length != 0"
+    >
+      <label style="margin-top: 10rem">Count : ({{ numCount }})</label>
+    </div>
+  </div>
+  <div class="form-group mt-2">
+    <label class="headtxt" for="message">Message</label>
+    <textarea
+      class="form-control"
+      [(ngModel)]="messagebody"
+      id="message"
+      rows="4"
+    ></textarea>
+    <span
+      style="font-size: 0.7rem; color: red"
+      *ngIf="msgErr == true && messagebody == ''"
+      >Please Enter Message</span
+    >
+  </div>
+  <div>
+    <button type="button" (click)="msgSent()" class="btn btn-primary mt-4">
+      Send
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger mt-4 mx-4"
+      (click)="ClearForm()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+
+<!--Template Modal-->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 150%; margin-left: -6rem">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="refVar == ''">
+          <span class="slash">//</span>Templates
+        </h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="refVar == 'add'">
+          <span class="slash">//</span>Add Template
+        </h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="refVar == 'edit'">
+          <span class="slash">//</span>Edit Template
+        </h5>
+        <span
+          class="close"
+          #actionClose
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          ><img src="../assets/images/cls.png" alt=""
+        /></span>
+      </div>
+      <div class="modal-body" style="max-height: 50vh; overflow-y: auto">
+        <div class="display" *ngIf="isShowDiv">
+          <div class="addIcon" (click)="addTemp()">
+            <img src="../assets/images/add.png" alt="" /><span style="font-size: 0.9rem; font-weight: bold;"> Add</span>
+          </div>
+          <table class="mt-3">
+            <thead>
+              <tr>
+                <!-- <th>Id</th> -->
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of TemplatesData.response">
+                <!-- <td>{{x.TW_ID}}</td> -->
+                <a style="text-decoration: underline;color:blue;cursor: pointer;" (click)="getName(x.TW_DESCRIPTION)">
+                  <td>{{ x.TW_NAME }}</td>
+                </a>
+                <td>
+                  <div style="white-space: break-spaces; width: 16rem">
+                    {{ x.TW_DESCRIPTION }}
+                  </div>
+                </td>
+                <td>{{ x.TW_STATUS }}</td>
+                <td
+                  (click)="EditTemplate(x)"
+
+                >
+                  <img
+                    src="../assets/images/Edit.png"
+                    alt=""
+                    style="cursor: pointer"
+                  />
+                </td>
+              </tr>
+              <!-- <tr *ngIf="TemplatesData.response == ''" colspan="5">No Records Available.</tr> -->
+            </tbody>
+          </table>
+          <div *ngIf="TemplatesData.response == ''" style="text-align: center">
+            <span> <b>No Records Available.</b></span>
+          </div>
+        </div>
+
+        <div class="add" *ngIf="isAddDiv">
+          <form [formGroup]="templateForm" (ngSubmit)="saveTemplate()">
+            <div>
+              <label>Name : </label>
+              <div>
+                <input
+                  type="text"
+                  id="tempName"
+                  name="tempName"
+                  formControlName="tempName"
+                />
+              </div>
+            </div>
+            <div class="mt-4">
+              <label>Description : </label>
+              <div>
+                <textarea
+                  type="text"
+                  name="tempDesc"
+                  formControlName="tempDesc"
+                ></textarea>
+              </div>
+            </div>
+            <div class="mt-4">
+              <label>Status : </label>
+              <div>
+                <select name="tempStatus" formControlName="tempStatus">
+                  <option value="Y">Yes</option>
+                  <option value="N">No</option>
+                </select>
+              </div>
+            </div>
+             <div class="mt-4">
+              <button class="btn btn-primary " style="margin-right: 4rem;" type="submit">Save</button>
+              <button class="btn btn-danger" (click)="cancelform()" #closeForm>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,728 @@
+<ngx-spinner  bdColor="rgba(51,51,51,0.8)"  size="medium"  color="white"  type="ball-clip-rotate-multiple">
+  <p style="font-size: 16px; color: white">Loading...</p>
+</ngx-spinner>
+
+<app-header></app-header>
+ <button class="btn btn-primary" (click)="popup(mymodal)">Open My Modal</button>
+ <!-- <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" (click)="popup(mymodal)">Open first modal</a> -->
+
+  <div class="row">
+
+    <div class="container-fluid d-flex justify-content-center align-items-center" style="background-color: rgb(117, 117, 117);height: 94vh;">
+
+            <div class="col-lg-10 m-auto">
+              <ng-template #mymodal let-modal>
+                <div class="dash-popup">
+                    <div class="header d-flex align-items-center">
+                        <h5 class="title m-0 ms-2">
+                            <img src="" alt=""> <span class="slash">//</span>
+                        </h5>
+                        <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="body">
+                        <div class="main">
+                            <div class="col-12">
+                                <div class="row align-items-center">
+                                    <div style="width: 50px; font-size: 1.5rem;" class="d-none  d-lg-block"><i class="fa fa-long-arrow-left float-end" aria-hidden="true" (click)="backtolist()"></i></div>
+                                    <div class="col-lg-5 col-12">
+                                        <form class="navbar-form" role="search">
+                                            <div class="input-group search">
+                                              <div class="input-group-btn">
+                                                <button class="btn btn_search" type="submit"></button>
+                                              </div>
+                                              <input class="form-control" placeholder="Search"  type="text">
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4 d-none d-lg-block ">
+                                <div class="row scroll_det">
+                                    <div class="customer">
+                                        <div class="pic"><img src="../../assets/images/Headshot.png" alt="" class="img-fluid"></div>
+                                        <div class="customer_cont">
+                                           <div class="d-flex justify-content-end">
+                                               <img src="../../assets/images/Check.png" alt="" class="pe-2 img-fluid">
+                                               <img src="../../assets/images/Star.png" alt="" class="img-fluid">
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="accor_">
+                                       <div class="accr_det">
+                                           <div class="accr_head" *ngIf="custScoreCount.length>0" [ngClass]="{ accr_head_ylw: custScoreCount[0].LTV >= '85',accr_head_blk : custScoreCount[0].LTV >='60' && custScoreCount[0].LTV <='70' , accr_head_grn: custScoreCount[0].LTV >= '71' && custScoreCount[0].LTV <= '80', accr_head_gry:custScoreCount[0].LTV < '60'  }">
+                                               <div class="d-flex align-items-center justify-content-center">
+                                                   <!-- <div class="star">
+                                                       <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                                       <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                                       <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                                       <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                                       <img src="../../assets/images/star_dis.png" alt="" class="img-fluid">
+                                                   </div> -->
+                                                   <div class="star">
+                                                    <ng-template #t let-fill="fill">
+                                                        <span class="star" [class.full]="fill === 100">
+                                                          <span class="half" [style.width.%]="fill"><em class="fa fa-star text-warning"></em></span><em class="fa fa-star-o text-warning cursor"></em>
+                                                        </span>
+                                                      </ng-template>
+
+                                                      <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                                                   </div>
+                                                   <div class="sales">
+                                                    <h2>{{custScoreCount[0].SalesCount}}</h2>
+                                                    <P>sales</P>
+                                                   </div>
+                                                   <div class="service">
+                                                    <h2>{{custScoreCount[0].ServiceCnt}}</h2>
+                                                       <P>service</P>
+                                                   </div>
+                                                   <div class="LT_value">
+                                                    <h2>{{custScoreCount[0].LTV}}</h2>
+                                                       <P>Lifetime Value</P>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="accr_cont">
+                                                <!-- <div class="col-12">
+
+                                                    <div class="row customer_id">
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <span>Customer ID:UC2015</span>
+                                                            <h1>Rick Ashworth</h1>
+                                                            <h3>480.920.0251</h3>
+                                                            <a >Ashworth@gmail.com</a>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <h6>Address</h6>
+                                                            <p>343 Elm Street</p>
+                                                            <p>Portland, Oregon</p>
+                                                            <p>97035</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <h6>Contact Preference</h6>
+                                                            <p>Phone</p>
+                                                            <h6 class="mt-3">SMS Opt-in</h6>
+                                                            <p>Yes</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <h6>Email Response</h6>
+                                                            <p>33% <span>(12 of 36)</span></p>
+                                                            <h6 class="mt-3">Offer Response Rate</h6>
+                                                            <p>52% <span>(8 of 15)</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-12">
+                                                  <div class="row customer_id" *ngIf="custDetails != undefined">
+                                                      <div class="col-lg-3 col-md-6">
+                                                          <h5>Customer ID:UC{{custDetails[0].UC_ID}}</h5>
+                                                          <h1>{{custDetails[0].UserName}}</h1>
+                                                          <!-- <h3>{{custDetails[0].Mobile[0] | slice:0:3 }}-{{custDetails[0].Mobile[0] | slice:3:6 }}-{{custDetails[0].Mobile[0] | slice:6:10 }}</h3> -->
+                                                          <h3>{{(custDetails[0].Mobile[0] == undefined) ? '--': (custDetails[0].Mobile[0] | slice:0:3) + (custDetails[0].Mobile[0].length>3?'-':'') + (custDetails[0].Mobile[0] | slice:3:6) +
+                                                            (custDetails[0].Mobile[0].length>3?'-':'') + (custDetails[0].Mobile[0] | slice:6:10)}}</h3>
+
+                                                          <p><span style="cursor: pointer;color: #00a1ff; text-transform: lowercase;">{{custDetails[0].Email[0]}}</span></p>
+                                                      </div>
+                                                      <div class="col-lg-3 col-md-6">
+                                                          <h6>Address</h6>
+                                                          <p>{{custDetails[0].UserAddress}}</p>
+                                                          <!-- <p>{{custDetails[0].city}},{{custDetails[0].country}}</p>  -->
+                                                          <!-- <p>{{custDetails[0].zip}}</p> -->
+                                                      </div>
+                                                      <div class="col-lg-3 col-md-6">
+                                                          <h6>Contact Preference</h6>
+                                                          <!-- <p>{{custDetails[0].ContactRef}}</p> -->
+                                                          <p>Email</p>
+
+                                                          <h6 class="mt-3">SMS Opt-in</h6>
+                                                          <p>{{custDetails[0].OPtIn}}</p>
+                                                      </div>
+                                                      <div class="col-lg-3 col-md-6">
+                                                          <h6>Email Response</h6>
+                                                          <p>{{custDetails[0].EmailREsponse}}</p>
+                                                          <h6 class="mt-3">Offer Response Rate</h6>
+                                                          <p>{{custDetails[0].OfferResponse}}</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                           </div>
+                                       </div>
+
+                                       <div class="accordion accordion-flush" id="accordionFlush">
+                                        <div class="accordion-item">
+                                          <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                              <img src="assets/images/purch_icon.png" alt="" class="pe-2"> Purchase History
+                                            </button>
+                                          </h2>
+                                          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFlush">
+                                            <div class="accordion-body data table-responsive">
+                                                <table class="table ">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Dealership</th>
+                                                        <th scope="col">Vehicle</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">VIN</th>
+                                                        <th scope="col">Trade</th>
+                                                        <th scope="col">Contract</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody *ngIf="custPurchaseHistory.length>0">
+                                                      <tr *ngFor="let ph of custPurchaseHistory">
+                                                        <td >{{ph.PurchaseDate}}</td>
+                                                        <td>{{ph.DealershipName}}</td>
+                                                        <td>{{ph.Vehicle}}</td>
+                                                        <td>${{ph.Costprice*1 | number:'1.2-2'}}</td>
+                                                        <td>{{ph.Vin}}</td>
+                                                        <td>{{ph.TradeType}}</td>
+                                                        <td style="color: #00a1ff; font-weight: none !important;">View</td>
+                                                      </tr>
+
+
+                                                    </tbody>
+                                                    <tbody *ngIf="custPurchaseHistory.length <= 0">
+                                                      <tr>
+                                                        <td colspan="7">No Data Found!!!</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                          <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <img src="assets/images/servi_icon.png" alt="" class="pe-2"> Service History
+                                            </button>
+                                          </h2>
+                                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFlush">
+                                            <div class="accordion-body data table-responsive">
+                                                <table class="table ">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Dealership</th>
+                                                        <th scope="col">Vehicle</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">VIN</th>
+                                                        <th scope="col">Trade</th>
+                                                        <th scope="col">Contract</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody *ngIf="custServiceHistory.length>0">
+                                                      <tr *ngFor="let sh of custServiceHistory">
+                                                        <td >{{sh.closedate1}}</td>
+                                                        <td>{{sh.DealershipName}}</td>
+                                                        <td>{{sh.Vehicle}}</td>
+                                                        <td>${{sh.Cost}}</td>
+                                                         <td>{{sh.vin}}</td>
+                                                        <td>{{sh.Category}}</td>
+                                                        <td style="color: #00a1ff;">View</td>
+                                                      </tr>
+                                                      <!-- <tr>
+                                                        <td >09.15.19</td>
+                                                        <td>Swickard BMW</td>
+                                                        <td>2020 BMW XLE</td>
+                                                        <td>$95,890.00</td>
+                                                        <td>W9821451D562545WX8</td>
+                                                        <td>Yes</td>
+                                                        <td>View</td>
+                                                      </tr> -->
+                                                      <!-- <tr>
+                                                        <td >09.15.19</td>
+                                                        <td>Swickard Toyota</td>
+                                                        <td>2021 Toyota XLE</td>
+                                                        <td>$60,890.00</td>
+                                                        <td>W9821451D562545WX8</td>
+                                                        <td>Yes</td>
+                                                        <td>View</td>
+                                                      </tr> -->
+                                                    </tbody>
+                                                    <tbody *ngIf="custServiceHistory.length<=0">
+                                                      <tr >
+                                                        <td colspan="7" class="nodataFound">No Data Found!!!</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                          <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <img src="assets/images/offer_icon.png" alt="" class="pe-2"> Offer History
+                                            </button>
+                                          </h2>
+                                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFlush">
+                                            <div class="accordion-body data table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Offer</th>
+                                                        <th scope="col">Subject Line</th>
+                                                        <th scope="col">Format</th>
+                                                        <th scope="col">Response</th>
+                                                        <th scope="col">Offer</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td >04.24.98</td>
+                                                        <td>Swickard Toyota</td>
+                                                        <td>1997 Toyota Camry XLE</td>
+                                                        <td>$24,890.00</td>
+                                                        <td>W9821451D562545WX8</td>
+                                                        <td>Yes</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td >09.15.19</td>
+                                                        <td>Swickard BMW</td>
+                                                        <td>2020 BMW XLE</td>
+                                                        <td>$95,890.00</td>
+                                                        <td>W9821451D562545WX8</td>
+                                                        <td>Yes</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td >09.15.19</td>
+                                                        <td>Swickard Toyota</td>
+                                                        <td>2021 Toyota XLE</td>
+                                                        <td>$60,890.00</td>
+                                                        <td>W9821451D562545WX8</td>
+                                                        <td>Yes</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-item" *ngFor="let veh of custVehicle; let i=index">
+                                            <h2 class="accordion-header" [id]="'headingFour'+i">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="false" [attr.aria-controls]="'collapse'+i">
+                                                <img src="assets/images/key_1.png" alt="" class="pe-2"> Vehicle {{i+1}}
+                                              </button>
+                                            </h2>
+                                            <div [id]="'collapse'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'headingFour'+i" data-bs-parent="#accordionFlush">
+                                              <div class="accordion-body">
+                                                  <div class="veh_det">
+                                                      <div class="row">
+                                                          <div class="col-lg-3 col-md-6">
+                                                            <div class="car_det">
+                                                                <div class="car_pic"><img src="../../../assets/images/defaultCar1.jpg" alt=""></div>
+                                                                <div class="car_logo"><img src="../../../assets/Brand logos/{{veh.VehicleImageUrl}}.png" alt="">
+                                                                  <!-- <span class="brand_det">
+                                                                    <p>{{veh.VehicleName}}</p>
+
+                                                                </span> -->
+                                                                </div>
+
+                                                                <!-- <div class="d-flex"> -->
+                                                                    <!-- <div class="brand_"></div> -->
+                                                                    <span class="brand_det">
+                                                                        <p>{{veh.VehicleName}}</p>
+
+                                                                    </span>
+                                                                <!-- </div> -->
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6" >
+                                                              <h6>Vehicle Type</h6>
+                                                              <p>{{veh.VehicleType}}</p>
+                                                              <h6>Contract</h6>
+                                                              <p><span style="cursor: pointer;color: #00a1ff;">View</span></p>
+                                                              <h6>Store</h6>
+                                                              <p>{{veh.StoreName}}</p>
+                                                              <h6>Estimated Mileage</h6>
+                                                              <p>{{veh.EstimatedMileage*1 | number}}</p>
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6">
+                                                            <h6>Purchase Price</h6>
+                                                            <p>${{veh.PurchasePrice*1 | number:'1.2-2'}}</p>
+
+                                                            <h6>Current Value</h6>
+                                                            <p>{{veh.CurrentValue}}</p>
+                                                            <h6>Loan/ Lease Remaining</h6>
+                                                            <p>${{veh.LoanAmount*1 |  number:'1.2-2'}}</p>
+                                                            <h6> Equity</h6>
+                                                            <p>{{veh.Equity}}</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6">
+                                                          <h6>Last Serviced</h6>
+                                                          <p>{{veh.LastServiceDate}}</p>
+                                                            <h6>Service History</h6>
+                                                            <p><span style="cursor: pointer;color: #00a1ff;">View</span></p>
+                                                            <h6>Total RO $</h6>
+                                                            <p>${{veh.TotalRosAmount*1 | number:'1.2-2'}}</p>
+
+                                                            <h6>Warranty</h6>
+                                                            <p>{{veh.Warranty}}</p>
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingFive">
+                                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                  <img src="assets/images/key_1.png" alt="" class="pe-2"> Vehicle 2
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFlush">
+                                              <div class="accordion-body">
+                                                  <div class="veh_det">
+                                                      <div class="row">
+                                                          <div class="col-lg-3 col-md-6">
+                                                            <div class="car_det">
+                                                                <div class="car_pic"><img src="../../assets/images/Headshot.png" alt=""></div>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="brand_"><img src="../../assets/images/Headshot.png" alt=""></div>
+                                                                    <div class="brand_det">
+                                                                        <p>2020 BMW</p>
+                                                                        <h6>X6M</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6">
+                                                              <h6>Vehicle Type</h6>
+                                                              <p>Purchased</p>
+                                                              <h6>Contract</h6>
+                                                              <p><a routerLink="">View</a></p>
+                                                              <h6>Store</h6>
+                                                              <p>Swickard BMW</p>
+                                                              <h6>Estimated Mileage</h6>
+                                                              <p>24,600</p>
+                                                          </div>
+                                                          <div class="col-lg-3 col-md-6">
+                                                            <h6>Vehicle Type</h6>
+                                                            <p>Purchased</p>
+                                                            <h6>Contract</h6>
+                                                            <p>$32,900</p>
+                                                            <h6>Store</h6>
+                                                            <p>Swickard BMW</p>
+                                                            <h6>Estimated Mileage</h6>
+                                                            <p>24,600</p>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <h6>Vehicle Type</h6>
+                                                            <p>Purchased</p>
+                                                            <h6>Contract</h6>
+                                                            <p><a routerLink="">View</a></p>
+                                                            <h6>Store</h6>
+                                                            <p>Swickard BMW</p>
+                                                            <h6>Estimated Mileage</h6>
+                                                            <p>24,600</p>
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div> -->
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4 d-block d-lg-none ">
+                                <div class="scroll_cus">
+                                <div class="customer_rating">
+                                    <div class="row  align-items-center justify-content-center">
+                                        <div class="col-5">
+                                            <img src="../../assets/images/star_mob_wht.png" class="img-fluid" alt="">
+                                            <img src="../../assets/images/star_mob_wht.png" class="img-fluid" alt="">
+                                            <img src="../../assets/images/star_mob_wht.png" class="img-fluid" alt="">
+                                            <img src="../../assets/images/star_mob_wht.png" class="img-fluid" alt="">
+                                            <img src="../../assets/images/star_mob_dis.png" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="col-2">
+                                            <h1>73</h1>
+                                            <p>Sales</p>
+                                        </div>
+                                        <div class="col-2">
+                                           <h1>52</h1>
+                                           <p>Service</p>
+                                       </div>
+                                       <div class="col-2">
+                                           <h1>80</h1>
+                                           <p>LTV</p>
+                                       </div>
+                                    </div>
+                                </div>
+
+                                <div class="cust_box">
+                                    <div class="d-flex">
+                                        <div class="cust_pic"><img src="assets/images/Headshot.png" class="img-fluid" alt=""></div>
+                                        <div class="cust_det">
+                                            <span class="d-flex justify-content-end"><img src="assets/images/Check.png" class="img-fluid pe-1" alt=""><img src="assets/images/Star.png" alt="" class="img-fluid"></span>
+                                            <p>Customer ID: <span>UC2015</span></p>
+                                            <h1>Rick Ashworth</h1>
+                                            <h6>480.920.0251</h6>
+                                            <span>Ashworth@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="cust_cont">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h6>Address</h6>
+                                                <p>343 Elm Street</p>
+                                                <p>Portlans, Oregon</p>
+                                                <p>97035</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h6>Contact Performance</h6>
+                                                <p>Phone</p>
+                                                <h6 class="mt-1">Sms Opt-in</h6>
+                                                <p>Yes</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h6>Email Response</h6>
+                                                <p>33% <span>(12 of 36)</span></p>
+                                                <h6 class="mt-1">Offer Response</h6>
+                                                <p>52% <span>(12 of 36)</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion accordion-flush" id="accordionFlush">
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                          <img src="assets/images/purch_icon.png" alt="" class="pe-2"> Purchase History
+                                        </button>
+                                      </h2>
+                                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFlush">
+                                        <div class="accordion-body">
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <img src="assets/images/servi_icon.png" alt="" class="pe-2"> Service History
+                                        </button>
+                                      </h2>
+                                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFlush">
+                                        <div class="accordion-body">
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <img src="assets/images/offer_icon.png" alt="" class="pe-2"> Offer History
+                                        </button>
+                                      </h2>
+                                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFlush">
+                                        <div class="accordion-body ">
+                                            <div class="col-12">
+                                                <div class="benifits">
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <h6 class="my-0">04.24.20</h6>
+                                                        <h5 class="mt-1 mb-0">50% OFF BRAKE REPAIRS!!!</h5>
+                                                        <h4 class="mt-2 mb-0" (click)="toggleStatus()" style="cursor: pointer;">+ more</h4>
+                                                    </div>
+                                                    <div class="col-3 d-flex flex-column justify-content-start align-items-center">
+                                                        <h6 class="my-0">Response</h6>
+                                                        <h5 class="mt-1 mb-0">Yes</h5>
+                                                    </div>
+                                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                                        <h4 class="my-0" >View</h4>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="row details" *ngIf="isShow">
+                                                        <div class="col-9">
+                                                            <h6 class="my-0">Offer</h6>
+                                                            <h5 class="mt-1 mb-0">50% off brake repairs with oil change. May 2020.</h5>
+                                                        </div>
+                                                        <div class="col-3 d-flex flex-column justify-content-start align-items-center">
+                                                            <h6 class="my-0">Format</h6>
+                                                            <h5 class="mt-1 mb-0">Email</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <h6 class="my-0">04.01.20</h6>
+                                                        <h5 class="mt-1 mb-0">Bowling out all 2019 Models!</h5>
+                                                        <h5 class="mt-2 mb-0"><a href="">+ more</a></h5>
+                                                    </div>
+                                                    <div class="col-3 d-flex flex-column justify-content-start align-items-center">
+                                                        <h6 class="my-0">Response</h6>
+                                                        <h5 class="mt-1 mb-0">No</h5>
+                                                    </div>
+                                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                                        <h5 class="my-0"><a href="" class="my-0">View</a></h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <h6 class="my-0">02.15.20</h6>
+                                                        <h5 class="mt-1 mb-0">Take a ride with us! FREE LUNCH!</h5>
+                                                        <h5 class="mt-2 mb-0"><a href="">+ more</a></h5>
+                                                    </div>
+                                                    <div class="col-3 d-flex flex-column justify-content-start align-items-center">
+                                                        <h6 class="my-0">Response</h6>
+                                                        <h5 class="mt-1 mb-0">No</h5>
+                                                    </div>
+                                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                                        <h5 class="my-0"><a href="" class="my-0">View</a></h5>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                              <img src="assets/images/key_1.png" alt="" class="pe-2"> Vehicle 1
+                                          </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFlush">
+                                          <div class="accordion-body">
+                                            <div class="col-12">
+                                                <div class="vehicle-details">
+                                                    <div class="car p-3">
+                                                        <div class="col-12">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-4">
+                                                                    <img class="img-fluid flex-shrink-0"
+                                                                        src="https://media.istockphoto.com/photos/generic-modern-suv-car-in-concrete-garage-picture-id1307086567?s=612x612">
+
+                                                                </div>
+
+                                                                <div class="col-8">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="brand-name d-flex align-items-start">
+                                                                                <img class="img-fluid flex-shrink-0 w-auto"
+                                                                                    src="https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png">
+                                                                                <div class="d-flex flex-column align-items-start ps-2 my-auto">
+                                                                                    <h4 class="mt-0 mb-1"><span>2020</span><span> BMW</span></h4>
+                                                                                    <h5 class="my-0">X6M</h5>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-8 mt-2">
+                                                                            <div class="price">
+                                                                            <h3 class="my-0">Purchase Price</h3>
+                                                                            <h2 class="my-0">$68,500</h2>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 mt-2">
+                                                                            <div class="contract d-flex flex-column align-items-center justify-content-center">
+                                                                            <h4 class="mt-0 mb-1">Contract</h4>
+                                                                            <a href="">View</a>
+                                                                             </div>
+                                                                         </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 mt-2">
+                                                                    <a href="" class="my-0">- less</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overview mt-2 p-3">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Vehicle Type</h5>
+                                                                <h6 class="my-0">Purchased</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Residual Value</h5>
+                                                                <h6 class="my-0">$38,000</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Last Seviced</h5>
+                                                                <h6 class="my-0">02.02.2021</h6>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-3">
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Store</h5>
+                                                                <h6 class="my-0">Swckard BMW</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Loan Remaining</h5>
+                                                                <h6 class="my-0">$18,000</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Service History</h5>
+                                                                <a class="m-0 p-0 " href="">View</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-3">
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Est. Milage</h5>
+                                                                <h6 class="my-0">24,6000</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Equity</h5>
+                                                                <h6 class="my-0">$20,000</h6>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Total RO $</h5>
+                                                                <h6 class="my-0">$1,264.68</h6>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mt-3">
+                                                            <div class="col-4">
+                                                            </div>
+                                                            <div class="col-4">
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5 class="my-0">Warranty</h5>
+                                                                <h6 class="my-0">Yes</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFive">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                              <img src="assets/images/key_1.png" alt="" class="pe-2"> Vehicle 2
+                                          </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFlush">
+                                          <div class="accordion-body">
+
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </ng-template>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+

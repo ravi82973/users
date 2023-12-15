@@ -1,0 +1,43 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+  <p style="font-size: 20px; color: white">Authenticating...</p>
+</ngx-spinner>
+<div class="divMain">
+  <!-- class="bg" -->
+    <div class="login-page" *ngIf="isShow == true">
+      <div class="form">
+        <div class="icon">
+          <img class="IconImg" src="../../../assets/images/axiomLogo.png" alt="" />
+        </div>
+        <br />
+        <form class="login-form" [formGroup]="loginForm">
+          <div class="form-group">
+            <input class="form-control textbox" type="email" placeholder="Email" name="email" formControlName="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" />
+            <small class="text-danger" *ngIf="submitted && loginForm.controls.email.hasError('required')">
+                Email is required
+              </small>
+              <small class="text-danger" *ngIf="loginForm.controls.email.hasError('pattern')">
+                Invalid Email Address
+              </small>
+        </div>
+
+            <div class="form-group">
+              <input class="form-control textbox" type="password" placeholder="Password" name="password" formControlName="password" />
+              <small class="text-danger" *ngIf="submitted && loginForm.controls.password.hasError('required')">
+                password is required
+              </small>
+            </div>
+
+            <div class="form-group" style="float: left;">
+                <input  type="checkbox" style="cursor: pointer;" (change)="remember($event)" formControlName="remember"/> <span style="color: aliceblue;" > Remember Me </span>
+              </div>
+   <br>  <br>
+          <div class="form-group" style="text-align:center;">
+            <button class="btn SignInButton" (click)="login()">
+              <span *ngIf="submitted==true"></span>
+              Sign in</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>

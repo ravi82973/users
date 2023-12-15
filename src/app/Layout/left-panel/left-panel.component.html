@@ -1,0 +1,13 @@
+<div id="mySidebar" class="sidenav">
+    <!-- <a class="closebtn" (click)="openNav()">&times;</a> -->
+    <!-- <a  class="closebtn" (click)="openNav()">&times;</a> -->
+    <a aria-hidden="true" class="close" (click)="openNav()">&times;</a>
+    <a [routerLink]="['/dashboardnew']">Dashboard</a>
+    <a [routerLink]="['/customerslist']">customerslist</a>
+    <a [routerLink]="['/customerslist2']">customerslist2</a>
+    <!-- <a [routerLink]="['/locations']">Distance Calculation</a> -->
+  </div>
+  <div id="main">
+    <span style="font-size:25px;cursor:pointer" (click)="openNav()">&#9776;</span>
+  </div>
+  

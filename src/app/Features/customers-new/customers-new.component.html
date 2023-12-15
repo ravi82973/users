@@ -1,0 +1,367 @@
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner> -->
+
+<app-header></app-header>
+<div class="container-fluid" id="XiomCustomerInsights" style="background-image: url('../../assets/images/bg_.jpg');height: 100vh;overflow: hidden;background-size: 100% 100%;position: relative;">
+  <div class="row">
+
+    <main class="col-lg-12 ms-auto">
+      <div class="background-images">
+
+        <div class="auto_w">
+
+          <div class="row search-bar p-3 collapse show">
+            <div class="col-lg-2 col-6 d-flex align-items-center justify-content-center text-end act-fltr"
+              style="margin: -11px 0px 9px;">
+              <div style="line-height: 13px;">
+                <p class="m-0">Active Filters</p>
+
+              </div>
+              <div title="">
+                <h1 class="m-0 ms-3" style="color: #2b91f0 ;">0</h1>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6 d-flex align-items-center justify-content-center text-end"
+              style="margin: -14px 0px 8px;">
+              <div style="line-height: 13px;">
+                <p class="m-0">Total Profiles</p>
+
+              </div>
+              <h1 class="m-0 ms-3" style="color: #2b91f0 ;">50</h1>
+            </div>
+            <div class="col-lg-0 col-2 d-flex align-items-center justify-content-end">
+              <div class="">
+                <!-- <i class="fa fa-cloud-download me-4" aria-hidden="true"></i>
+                    <i class="fa fa-floppy-o me-3" aria-hidden="true"></i> -->
+                <img src="../../assets/images/dwn_icon.png" alt="" style="margin-top: -13px;cursor: pointer;" title="Download">
+              </div>
+            </div>
+            <div class="col-lg-1 col-4 d-flex align-items-center justify-content-end" style=" margin: -10px 0px 11px;">
+              <select style="height:28px;" [(ngModel)]="selectedSourceType" (change)="changeSrcType($event)" >
+                <option value="DMS"><p class="m-0" (change)="getCustomers()">DMS</p></option>
+                <option  value="ELEADS" (change)="getCustomers()">ELEADS</option>
+            </select>
+            </div>
+
+              <div  class="col-lg-2 col-6 d-flex align-items-center justify-content-end" style=" margin: -10px 0px 11px; padding-right: 32px;">
+                <!-- <div class="datepicker"> -->
+                <input type="date" #evtDate required name="evtDate" [(ngModel)]="selectedFromDate"   placeholder="From Date" (change)="DateExpression()" style="width:120px;height: 28px;">
+
+                <!-- </div> -->
+
+
+              </div>
+              <div class="col-lg-2 col-8 d-flex align-items-center justify-content-end" style=" margin: -10px 0px 11px;padding-right: 74px;">
+                <input type="date" #evtDate required name="evtDate" [(ngModel)]="selectedToDate"  placeholder="To Date" (change)="DateExpression()" style="width:120px;height:28px">
+
+              </div>
+
+
+
+            <!-- <div class="col-lg-4 col-12 d-flex align-items-center justify-content-end" style=" margin: -10px 0px 11px;">
+              <form class="navbar-form" role="search"
+                style="border: 1px solid #00000026;border-radius:10px;width:100%;margin-right:2rem;font-family: 'Roboto-Regular';">
+                <div class="input-group search">
+                  <div class="input-group-btn">
+                    <button class="btn btn_search" type="submit"></button>
+                  </div>
+                  <input class="form-control" #Search placeholder="Search" type="text" formControlName="searchText"
+                   >
+                </div>
+              </form>
+            </div> -->
+          </div>
+          <!-- <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          <img src="assets/images/purch_icon.png" alt="" class="pe-2"> Purchase History
+                        </button>
+                      </h2> -->
+
+          <!-- <app-reportfilter (store)="StoreData($event)" *ngIf="false"></app-reportfilter> -->
+
+
+
+          <div id="parent">
+
+            <div class="separator my-4 " role="tab" id="filterHeading">
+
+              <h6 class="m-0 me-3" style="color:white;"><span>
+
+
+                  <a href="#collapseOne" data-bs-toggle="collapse"
+                  data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+                  aria-hidden="true" ><i class="fa fa-chevron-up ps-2 pe-1" ></i></a>
+                  <!-- <a href="#collapseOne" data-bs-toggle="collapse"
+                  data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+                  aria-hidden="true" ><i class="fa fa-chevron-down ps-2 pe-1" ></i></a> -->
+
+                </span> FILTER BREAKDOWN</h6>
+
+
+
+              <div class="line"></div>
+
+
+
+            </div>
+            <!-- <div class="NameList" *ngIf="closelist" >
+              <ul class=" list-group list-group-flush search-list" >
+
+                <li class="list-group-item " *ngFor="let cd of filterlist" (click)="search(cd.Name)" style="border: none;">
+                   <div class="lst-btn p-2">
+                    {{cd.Name}}
+
+                  </div>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+          <!-- ///////////////////////////////////// DEAL ///////////////////////////////// -->
+
+
+
+          <div class="separator my-4" role="tab" id="headingThree">
+            <!-- <h6 class="m-0 me-3" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><span><button class="  accordion-button collapsed  btn-arrow" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> </button> -->
+            <h6 class="m-0 me-3" style="color: white;"><span> <a data-bs-toggle="collapse" data-bs-parent="#headingThree"
+                  aria-controls="collapseTwo"><i class="fa fa-chevron-up ps-2 pe-1"></i></a></span> CUSTOMER PROFILES</h6>
+
+            <!-- </span></h6> -->
+            <div class="line"></div>
+
+
+
+            <div class="ms-3">
+              <div class="d-flex">
+                <button class="button me-0 btn-lft" type="button" id="btnlft"
+                 ><i class="fa fa-bars ps-1"
+                    aria-hidden="true"></i></button>
+                <button class="button ms-0 btn-ryt" type="button" id="btnrgt" ><i class="fa fa-th-large pe-1"
+                    aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row scroll_grid nodataFound"  *ngIf="isNoRec && (customersList | filter:searchText).length == 0">
+            No Records Found!!
+          </div> -->
+
+
+
+
+
+
+
+          <div class="row scroll_grid d-flex justify-content-around">
+            <!-- <div class="profile col-6" *ngFor="let cd of customersList ">
+                  <div class="customer-card" id="collapseTwo" aria-labelledby="headingThree">
+                    <div class=" d-flex justify-content-around"
+                      [ngClass]="{  head_ylw: cd.LTVScore >= '85',head_blk : cd.LTVScore >= '60' && cd.LTVScore <= '70', head_grn: cd.LTVScore >= '71' && cd.LTVScore <= '80', head_gry:cd.LTVScore < '60'  }">
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.SalesScore}}</h3>
+                        <span class="mt-0 mb-0">Sales</span>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.ServiceScore}}</h3>
+                        <span class="mt-0 mb-0">Service</span>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.LTVScore}}</h3>
+                        <span class="mt-0 mb-0">LTV</span>
+                      </div>
+                    </div>
+
+                    <div class="p-lg-4 ">
+                      <div class="customer-details d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../../assets/images/default.png" >
+                        <div class="d-flex flex-column align-items-start ps-lg-3 ps-2 my-auto">
+                          <h6 class="mt-0 mb-0">{{cd.DataSince}}</h6>
+                          <h4 class="mt-0 mb-1" title="{{cd.UserName}}">{{(cd.UserName == undefined ? '--' : (
+                            (cd.UserName.toString() | slice:0:15) + (cd.UserName.toString().length > 15 ? '...' : '')
+                            ))}}</h4>
+                          <h5 class="mt-0 mb-0">{{(cd.Mobile == undefined) ? '--': (cd.Mobile[0] | slice:0:3) +
+                            (cd.Mobile[0].length>3? '-':'') + (cd.Mobile[0] | slice:3:6) + (cd.Mobile[0].length>3? '-':'') +
+                            (cd.Mobile[0] | slice:6:10)}}</h5>
+                          <a href="" style="cursor: pointer; text-transform: lowercase;" class="mt-0 mb-0 "
+                            title="{{cd.Email}}">
+                            <p style="font-size:0.7rem ;">
+                              {{(cd.Email == undefined ? '--' : ( (cd.Email.toString() | slice:0:20) +
+                              (cd.Email.toString().length > 20 ? '...' : '') )) }}
+                            </p>
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="sales-details mt-3">
+                        <h2 class="title mt-0 mb-0"><span>SALES</span>
+                          <hr />
+                        </h2>
+                        <div class="d-flex justify-content-between">
+                          <div>
+                            <h6 class="mt-0 mb-1">Vehicles ({{cd.CurrentTotalVehicles}})</h6>
+                            <h6 class="mt-0 mb-0">Lifetime</h6>
+                          </div>
+                          <div>
+                            <h5 class="mt-0 mb-0">${{cd.CurrentVehiclesPrice*1 | number}}</h5>
+                            <h5 class="mt-1 mb-0">${{cd.LifetimeTotalPrice*1 | number }}</h5>
+                          </div>
+                          <div>
+                            <div class="gross d-flex justify-content-between align-items-center mt-1">
+                              <h4 class="me-1">Gross</h4>
+                              <h6 class="float-end mt-0 mb-0">${{cd.CurrentVehiclesGross*1 | number}}</h6>
+                            </div>
+                            <div class="gross d-flex justify-content-between align-items-center">
+                              <h4 class="me-1 mt-1">Gross</h4>
+                              <h6 class="float-end mt-1 mb-0">${{cd.LifetimeGross*1 | number}}</h6>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="sales-details mt-3">
+                        <h2 class="title  mt-0 mb-0"><span>SERVICE</span>
+                          <hr />
+                        </h2>
+                        <div class="d-flex justify-content-between text-center ">
+                          <div>
+                            <h4 class="mt-0 mb-0 px-2" >YTD</h4>
+                            <h5 class="mt-0 mb-0" >${{cd.YTDServiceAmount[0]}}</h5>
+                          </div>
+                          <div>
+                            <h4 class="mt-0 mb-0" >3 Years</h4>
+                            <h5 class="mt-0 mb-0">{{cd.CurrentServiceAmount[0] | currency : 'USD' :
+                              'symbol' : '1.0-0' }}</h5>
+                          </div>
+                          <div>
+                            <h4 class="mt-0 mb-0" >Lifetime</h4>
+                            <h5 class="mt-0 mb-0">{{cd.ServiceLifetime[0] | currency : 'USD' : 'symbol'
+                              : '1.0-0' }}</h5>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="view text-center mt-4">
+                        <a style="cursor: pointer;" class="mt-0 mb-0 " (click)="fullHistory(cd,myModal)">View full history</a>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+            <!-- new-grid -->
+            <div class="customer-profile col-6" *ngFor="let cd of customersList">
+              <div class="custm-card">
+                <div class="custm-head _chineseblack"
+                  [ngClass]="{'_chineseblack': (cd.LTVScore >= 85),'_lavendergray':(cd.LTVScore >= 79 && cd.LTVScore < 85),'_metallicgreen':(cd.LTVScore >= 70 && cd.LTVScore <= 79),'_harvestgold':(cd.LTVScore >= 55 && cd.LTVScore <= 69),'_robinblue':(cd.LTVScore < 55)}">
+                  <div class="row align-items-center">
+                    <div class="col-5 mt-2 d-flex flex-column justify-content-center align-items-center">
+                      <h6 class="m-0 p-0" title="{{cd.DataSince}}">{{(cd.DataSince.toString() | slice:9:14)}}
+                        {{(cd.DataSince.toString() | slice:14:19)}} {{(cd.DataSince.toString() | slice:-5:29)}}</h6>
+                      <div class="star">
+                        <ngb-rating  class="rating" [(rate)]="cd.starCount"   [readonly]="true" [max]="5">
+                          <ng-template let-fill="fill">
+                            <span class="star color{{cd.starCount}}" [class.filled]="fill === 100"
+                              [class.notfilled]="fill === 0" style="font-size:14px;">&#9733;</span>
+                          </ng-template>
+                        </ngb-rating>
+                      </div>
+                    </div>
+
+                    <div class="col-7">
+                      <div class="d-flex justify-content-between ">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.SalesScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">Sales</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.ServiceScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">Service</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.LTVScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">LTV</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="p-lg-3 p-2">
+                  <div class="custm-details d-flex align-items-start">
+                    <img class="img-fluid flex-shrink-0 rounded-circle"
+                      src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y">
+                    <div class="d-flex flex-column align-items-start ps-lg-3 ps-2">
+                      <h4 class="mt-0 mb-0" title="{{cd.UserName}}">{{(cd.UserName == undefined ? '--' : (
+                        (cd.UserName.toString() | slice:0:15) + (cd.UserName.toString().length > 15 ? '...' : '')
+                        ))}}</h4>
+                      <h5 class="mt-0 mb-0">{{(cd.Mobile == undefined) ? '--': (cd.Mobile | slice:0:3) +
+                        (cd.Mobile.length>3? '.':'') + (cd.Mobile | slice:3:6) + (cd.Mobile.length>3? '.':'') +
+                        (cd.Mobile | slice:6:10)}}</h5>
+                      <a style="cursor: pointer; text-transform: lowercase;" class="mt-0 mb-0 " title="{{cd.Email}}">
+                        <p style="font-size:0.7rem ;">
+                          {{(cd.Email == undefined ? '--' : ( (cd.Email.toString() | slice:0:25) +
+                          (cd.Email.toString().length > 25 ? '...' : '') )) }}
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="custm-bd my-3">
+                    <div *ngFor="let x of parseJsonToArray(cd.MultiVehicles); let i = index">
+
+
+                      <div class="sales-details" *ngIf="i == 0">
+                        <h2 class="title">{{cd.DealType == 'New' || cd.DealType == 'Used' ? 'PURCHASED' :(cd.DealType ==
+                          'Lease' ? 'LEASED' : '')}}</h2>
+                        <div class="hr"></div>
+                        <div class="row align-items-center">
+
+                          <div class="col-6">
+                            <h5 title="{{x.vehiclename}}"> <span>{{x.vehiclename}}</span> </h5>
+                          </div>
+                          <div class="col-6" title="{{x.vin}}">
+                            <h6>{{x.vin}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                      <div class="sales-details mt-3" *ngIf="i >= 1">
+                        <!-- <h2 class="title">{{cd.DealType == 'New' || cd.DealType == 'Used' ? 'PURCHASED' : (cd.DealType == 'Lease' ? 'LEASED' : '')}}</h2>
+                                  <div class="hr"></div> -->
+                        <div class="row align-items-center">
+                          <div class="col-6">
+                            <h5 title="{{x.vehiclename}}"><span>{{x.vehiclename}}</span> </h5>
+                          </div>
+                          <div class="col-6" title="{{x.vin}}">
+                            <h6>{{x.vin}}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="view text-center">
+                    <a style="cursor: pointer;" class="mt-0 mb-0 " >View</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    </main>
+
+  </div>
+
+</div>

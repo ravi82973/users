@@ -1,0 +1,1790 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<app-header></app-header>
+
+<!-- <app-dashboard></app-dashboard> -->
+<div class="container-fluid" id="XiomCustomerInsights" style="background-image: url('../../assets/images/bg_.jpg');height: 100vh;overflow: hidden;background-size: 100% 100%;position: relative;">
+  <div class="row">
+
+    <main class="col-lg-12 ms-auto">
+      <div class="background-images">
+        <app-xiomicon></app-xiomicon>
+        <div class="auto_w">
+          <!-- <div class="row mt-4">
+                          <div class="col-lg-6 col-7">
+                              <form class="navbar-form" role="search">
+                                  <div class="input-group search">
+                                    <div class="input-group-btn">
+                                      <button class="btn btn_search" type="submit"></button>
+                                    </div>
+                                    <input class="form-control" placeholder="Search"  type="text">
+
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="col-lg-3 col-3 ms-auto">
+                              <div class="d-flex justify-content-end">
+                                  <button class="btn bar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                                  <button class="btn dots"><i class="fa fa-th-large" aria-hidden="true"></i></button>
+                              </div>
+                          </div>
+                      </div> -->
+          <!-- <button class="btn btn-primary" (click)="popup(mymodal)">Open My Modal</button> -->
+          <div class="row search-bar p-3 collapse show">
+            <div class="col-lg-2 col-6 d-flex align-items-center justify-content-center text-end act-fltr"
+              style="margin: -11px 0px 9px;">
+              <div style="line-height: 13px;">
+                <p class="m-0">Active Filters</p>
+
+              </div>
+              <div title="{{activeFilterExpression}}">
+                <h1 class="m-0 ms-3" style="color: #2b91f0 ;">{{activeFiltersCount*1 | number}}</h1>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6 d-flex align-items-center justify-content-center text-end"
+              style="margin: -14px 0px 8px;">
+              <div style="line-height: 13px;">
+                <p class="m-0">Total Profiles</p>
+
+              </div>
+              <h1 class="m-0 ms-3" style="color: #2b91f0 ;">{{totalRecordsCount*1 | number}}</h1>
+            </div>
+            <div class="col-lg-3 col-6 d-flex align-items-center justify-content-end">
+              <div class="datepicker">
+                <input type="date" [(ngModel)]="selectedFromDate" (change)="FromDateChange()">
+                to
+                <input type="date" [(ngModel)]="selectedToDate" (change)="ToDateChange()">
+              </div>
+
+              <div class="">
+                <!-- <i class="fa fa-cloud-download me-4" aria-hidden="true"></i>
+                    <i class="fa fa-floppy-o me-3" aria-hidden="true"></i> -->
+
+                <img src="../../assets/images/dwn_icon.png" alt="" style="margin-top: -13px;cursor: pointer;" title="Download" (click)="ExportToExcel()">
+              </div>
+            </div>
+            <div class="col-lg-4 col-12 d-flex align-items-center justify-content-end" style=" margin: -10px 0px 11px;">
+              <form class="navbar-form" role="search" [formGroup]="searchForm"
+                style="border: 1px solid #00000026;border-radius:10px;width:100%;margin-right:2rem;font-family: 'Roboto-Regular';">
+                <div class="input-group search">
+                  <div class="input-group-btn">
+                    <button class="btn btn_search" type="submit"></button>
+                  </div>
+                  <input class="form-control" #Search placeholder="Search" type="text" formControlName="searchText" [value]="searchText" (keyup)="OnChange($event)"
+                    (keydown.enter)="DataonChange()">
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          <img src="assets/images/purch_icon.png" alt="" class="pe-2"> Purchase History
+                        </button>
+                      </h2> -->
+
+          <!-- <app-reportfilter (store)="StoreData($event)" *ngIf="false"></app-reportfilter> -->
+
+
+
+          <div id="parent">
+
+            <div class="separator my-4 " role="tab" id="filterHeading">
+
+              <h6 class="m-0 me-3" style="color:white;"><span>
+
+
+                  <a href="#collapseOne" data-bs-toggle="collapse" *ngIf="upIcon"
+                  data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+                  aria-hidden="true" (click)=" highIcon()"><i class="fa fa-chevron-up ps-2 pe-1" ></i></a>
+                  <a href="#collapseOne" data-bs-toggle="collapse"  *ngIf="downIcon"
+                  data-bs-parent="#filterHeading" aria-expanded="false" aria-controls="collapseOne"
+                  aria-hidden="true" (click)=" lowIcon()"><i class="fa fa-chevron-down ps-2 pe-1" ></i></a>
+
+                </span> FILTER BREAKDOWN</h6>
+
+
+
+              <div class="line"></div>
+
+
+
+            </div>
+            <div class="NameList" *ngIf="closelist" >
+              <ul class=" list-group list-group-flush search-list" >
+
+                <li class="list-group-item " *ngFor="let cd of filterlist" (click)="search(cd.Name)" style="border: none;">
+                   <div class="lst-btn p-2">
+                    {{cd.Name}}
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- ///////////////////////////////////// DEAL ///////////////////////////////// -->
+
+          <div class="row auto_w mt-3 collapse show" id="collapseOne" role="tabpanel" aria-labelledby="filterHeading"
+            data-bs-parent="#filterHeading">
+
+            <div class="d-flex" style="width: 100%; overflow-x:auto">
+
+              <!-- Stores List -->
+
+              <div class="deal col-6" *ngFor="let store of StoreName" [ngClass]="{'inactive':store.isChecked==false}">
+
+                <!-- <div class="card-header bg-white d-flex justify-content-between align-items-center h-100" >
+                              <h6 class="mb-0" >Dealership</h6>
+                              <div class="d-flex justify-content-around align-items-center h-100">
+                                  <span class="pe-2">Off</span>
+                                  <label class="switch">
+                                    <input type="checkbox"   [value]="store.CVP_RelatedStores"    [checked]="store.CVP_RelatedStores" (change)="getStoreCheck($event,store)"/>
+                                      <div></div>
+                                  </label>
+                                  <span class="ps-2">On</span>
+                              </div>
+                          </div>
+                          <div class="card-body" >
+                            <h5 class="text-center mb-1" >{{store.Store}}</h5>
+                            <h2 class="text-center mb-0">{{store.StoreCount}}</h2>
+                            <div class="d-flex justify-content-between mt-2 mb-0">
+                              <p class="mb-0" ><a  href="">View profiles</a></p>
+                              <p class="mb-0"><a href="" >Cancel</a></p>
+                            </div>
+                          </div> -->
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Dealership</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>{{store.Store}}</h4>
+                  <h5>{{store.StoreCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [value]="store.CVP_RelatedStores"
+                        [checked]="store.CVP_RelatedStores" (change)="getStoreCheck($event,store)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':store.isChecked==false}">{{store.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+              <!-- Brands List -->
+
+              <div class="deal col-6" *ngFor="let brand of BrandName" [ngClass]="{'inactive':brand.isChecked==false}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Brands</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>{{brand.Brand}}</h4>
+                  <h5>{{brand.BrandCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [value]="brand.CVP_Brand" [checked]="brand.CVP_Brand"
+                        (change)="getbrandCheck($event,brand)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':brand.isChecked==false}">{{brand.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+              <!-- LTV Score Check -->
+              <div class="deal col-6" *ngFor="let score of LTVCount" [ngClass]="{'inactive':LTVSBoolean}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Score</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4 *ngIf="scoreFrom.length == 1 ">{{(scoreFrom == 'V')?'VIP':(scoreFrom == 'P')?'Platinum':(scoreFrom ==
+                    'E')?'Emerald':(scoreFrom == 'G')?'Gold':(scoreFrom == 'N')?'New':''}}</h4>
+                  <h4 *ngIf="scoreFrom.length > 1 ">LTV Score</h4>
+                  <h5>{{score.ScoreCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [checked]="true"
+                        (change)="getLTVScoreCheck($event,score)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':score.isChecked==false}">{{score.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+
+              <!-- Sales Value -->
+              <div class="deal col-6" *ngFor="let sales of SaleCount" [ngClass]="{'inactive':SalesBoolean}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Sales</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>Sales</h4>
+                  <h5>{{sales.SalesCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [checked]="true" (change)="getSaleCheck($event,sales)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':sales.isChecked==false}">{{sales.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+
+              <!-- Service Value -->
+              <div class="deal col-6" *ngFor="let service of ServiceCount" [ngClass]="{'inactive':ServiceBoolean}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Service</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>service</h4>
+                  <h5>{{service.ServiceCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [checked]="true"
+                        (change)="getServiceCheck($event,service)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':service.isChecked==false}">{{service.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+              <!-- Sales and Service Score  -->
+              <div class="deal col-6" *ngFor="let sale of SalesScoreCount" [ngClass]="{'inactive':SaleScoreBoolean}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Sales Score</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>sales</h4>
+                  <h5>{{sale.SalesScoreCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [checked]="true"
+                        (change)="getSaleScoreCheck($event,sale)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':sale.isChecked==false}">{{sale.Status}}</span>
+                    </label>
+
+
+                    <!-- <span class="ps-2">Include</span> -->
+                  </a>
+                </div>
+
+              </div>
+
+              <div class="deal col-6" *ngFor="let service of ServiceScoreCount" [ngClass]="{'inactive':ServiceScoreBoolean}">
+
+
+                <div class="deal_hd">
+                  <h6 class="m-0 p-0">Service Score</h6>
+                  <!-- <a (click)="getStoreCheck('false',store)" ><img src="../../assets/images/x_i.png" alt=""></a> -->
+                  <a><img src="../../assets/images/x_i.png" alt=""></a>
+                </div>
+                <div class="deal_bd">
+                  <h4>service</h4>
+                  <h5>{{service.ServiceScoreCount*1 | number}}</h5>
+                </div>
+                <div class="deal_ft">
+                  <a>View</a>
+                  <!-- <a (click)="getStoreCheck('true',store)">{{store.Status}}</a> -->
+                  <a>
+                    <label>
+                      <input type="checkbox" style="display: none;" [checked]="true"
+                        (change)="getServiceScoreCheck($event,service)" />
+                      <span class="pe-2" style="cursor: pointer;"
+                        [ngClass]="{'shwStatus':service.isChecked==false}">{{service.Status}}</span>
+                    </label>
+
+                  </a>
+                </div>
+
+              </div>
+
+
+
+            </div>
+            <!-- <div class="deal col-6">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Dealship</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>Western BMW</h4>
+                        <h5>96,520</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#">View</a>
+                        <a href="#">Exclude</a>
+                    </div>
+                </div>
+                <div class="deal col-6">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Ranking</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>All</h4>
+                        <h5>23,694</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#">View</a>
+                        <a href="#">Exclude</a>
+                    </div>
+                </div>
+                <div class="deal col-6" style="opacity: 0.2;">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Brand</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>BMW</h4>
+                        <h5>34,965</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#"></a>
+                        <a href="#" style="opacity:1 !important;">Include</a>
+                    </div>
+                </div>
+                <div class="deal col-6">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Proximity</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>Less than 25 miles</h4>
+                        <h5>12,689</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#">View</a>
+                        <a href="#">Exclude</a>
+                    </div>
+                </div>
+                <div class="deal col-6">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Vehicle Equity</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>Positive Equity</h4>
+                        <h5>43,961</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#">View</a>
+                        <a href="#">Exclude</a>
+                    </div>
+                </div>
+                <div class="deal col-6">
+                    <div class="deal_hd">
+                        <h6 class="m-0 p-0">Multivehicle</h6>
+                        <a href=""><img src="../../assets/images/x_i.png" alt=""></a>
+                    </div>
+                    <div class="deal_bd">
+                        <h4>2+ Vehicles</h4>
+                        <h5>68,392</h5>
+                    </div>
+                    <div class="deal_ft">
+                        <a href="#">View</a>
+                        <a href="#">Exclude</a>
+                    </div>
+                </div> -->
+
+          </div>
+
+          <div class="separator my-4" role="tab" id="headingThree">
+            <!-- <h6 class="m-0 me-3" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><span><button class="  accordion-button collapsed  btn-arrow" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> </button> -->
+            <h6 class="m-0 me-3" style="color: white;"><span> <a data-bs-toggle="collapse" data-bs-parent="#headingThree"
+                  aria-controls="collapseTwo"><i class="fa fa-chevron-up ps-2 pe-1"></i></a></span> CUSTOMER PROFILES</h6>
+
+            <!-- </span></h6> -->
+            <div class="line"></div>
+
+
+
+            <div class="ms-3">
+              <div class="d-flex">
+                <button class="button me-0 btn-lft" type="button" id="btnlft" (click)="toggleblockandgrid('grid')"
+                  [ngClass]="[ grid==true ? 'btn-lft' : 'btn-lftopt' ]"><i class="fa fa-bars ps-1"
+                    aria-hidden="true"></i></button>
+                <button class="button ms-0 btn-ryt" type="button" id="btnrgt" (click)="toggleblockandgrid('block')"
+                  [ngClass]="{'btn-rytopt': ( block == false)}"><i class="fa fa-th-large pe-1"
+                    aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row scroll_grid nodataFound"  *ngIf="isNoRec && (customersList | filter:searchText).length == 0">
+            No Records Found!!
+          </div>
+          <div class="row collapse show" *ngIf="grid==true && customersList.length > 0" aria-labelledby="headingThree" role="tabpanel"
+            data-bs-parent="#headingThree">
+            <div class="col-lg-12">
+              <div class="xiom-prof-tbl table-responsive" (scroll)="loadMoreCustomers($event)" id="excel-data" #TABLE>
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="4"><span class="gridheader">Customer </span></th>
+                      <th colspan="3"><span class="gridheader">Customer Value </span></th>
+                      <th colspan="4"><span class="gridheader">Sales </span></th>
+                      <th colspan="3"><span class="gridheader" style="padding-right: 11%;">Service </span></th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                      <th [appSort]="customersList" data-order="desc" data-name="UserName">Name</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="Mobile">Phone</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="Email" style="text-align: left;">Email</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="DataSince">Since</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="SalesScore">Sales</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="ServiceScore">Service</th>
+
+                      <!-- <th></th> -->
+                      <th [appSort]="customersList" data-order="desc" data-name="LTVScore">LTV</th>
+                      <!-- <th></th> -->
+                      <th [appSort]="customersList" data-order="desc" data-name="CurrentVehiclesPrice">Vehicles</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="CurrentVehiclesGross">Gross</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="LifetimeTotalPrice">Lifetime</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="LifetimeGross">Gross</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="YTDServiceAmount">YTD</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="CurrentServiceAmount">3 Years</th>
+                      <th [appSort]="customersList" data-order="desc" data-name="ServiceLifetime">Lifetime</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cd of customersList">
+                      <ng-container *ngIf="customersList != undefined">
+                        <td style="text-align:left !important"><span> <img class="img-fluid flex-shrink-0 rounded-circle"
+                              src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                              width="20"></span>
+                          <span style="font-family:'Roboto-Bold';" title="{{cd.UserName[0]}}"> {{(cd.UserName == undefined ?
+                            '--' : (
+                            (cd.UserName.toString() |
+                            slice:0:25) +
+                            (cd.UserName.toString().length > 25 ? '...' : '') ))}}
+                          </span>
+                        </td>
+                        <td>{{(cd.Mobile == undefined) ? '--': (cd.Mobile | slice:0:3) + (cd.Mobile.length>3?
+                          '.':'') +
+                          (cd.Mobile | slice:3:6) + (cd.Mobile.length>3? '.':'') +
+                          (cd.Mobile | slice:6:10)}}</td>
+                        <td style="text-align: left;" title="{{cd.Email}}">{{(cd.Email == undefined) ? '--' :
+                          (cd.Email.toString() | titlecase )}}</td>
+                        <td>{{cd.SinceDate}}</td>
+
+                        <td style="font-weight:bold;border-bottom: 1px solid #af9f9f"
+                          [ngClass]="{'black': (cd.LTVScore >= 85),'grey':(cd.LTVScore >= 79 && cd.LTVScore < 85),'green':(cd.LTVScore >= 70 && cd.LTVScore <= 79),'yellow':(cd.LTVScore >= 55 && cd.LTVScore <= 69),'Blue':(cd.LTVScore < 55)}">
+                          {{cd.SalesScore}}</td>
+                        <td style="font-weight:bold;border-bottom: 1px solid #af9f9f"
+                          [ngClass]="{'black': (cd.LTVScore >= 85),'grey':(cd.LTVScore >= 79 && cd.LTVScore <85),'green':(cd.LTVScore >= 70 && cd.LTVScore <= 79),'yellow':(cd.LTVScore >= 55 && cd.LTVScore <= 69),'Blue':(cd.LTVScore < 55)}">
+                          {{cd.ServiceScore}}</td>
+                        <!-- <td></td> -->
+                        <td style="font-weight:bold;text-align: left;border-bottom: 1px solid #af9f9f;padding-left: 0%;"
+                          [ngClass]="{'black': (cd.LTVScore >= 85),'grey':(cd.LTVScore >= 79 && cd.LTVScore <85),'green':(cd.LTVScore >= 70 && cd.LTVScore <= 79),'yellow':(cd.LTVScore >= 55 && cd.LTVScore <= 69),'Blue':(cd.LTVScore < 55)}">
+                          {{cd.LTVScore}} <span style="font-weight: normal;">{{(cd.LTVScore >= 85)?'VIP':(cd.LTVScore >= 79 &&
+                            cd.LTVScore < 85)?'Platinum':(cd.LTVScore>= 70 && cd.LTVScore <= 79)?'Emerald':(cd.LTVScore>= 55
+                                && cd.LTVScore <= 69)?'Gold':(cd.LTVScore < 55)?'New':''}}</span>
+                        </td>
+                        <!-- <td></td> -->
+
+
+                        <td>${{cd.CurrentVehiclesPrice*1 | number}}</td>
+                        <td>{{cd.CurrentVehiclesGross*1 | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+
+                        <td style="font-family:'Roboto-Bold';">${{cd.LifetimeTotalPrice*1 | number }}</td>
+                        <td>{{cd.LifetimeGross*1 | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                        <td>${{cd.YTDServiceAmount}}</td>
+                        <td>{{cd.CurrentServiceAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</td>
+                        <td style="font-family:'Roboto-Bold';">{{cd.ServiceLifetime | currency : 'USD' : 'symbol': '1.0-0' }}
+                        </td>
+                        <td style="cursor: pointer;" (click)="fullHistory(cd,myModal)">Full history</td>
+                        <!-- <a style="cursor: pointer;"  (click)="fullHistory(cd,myModal)">View</a> -->
+
+                      </ng-container>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="row scroll_grid d-flex justify-content-around" *ngIf="block==true" (scroll)="loadMoreCustomers($event)">
+            <!-- <div class="profile col-6" *ngFor="let cd of customersList ">
+                  <div class="customer-card" id="collapseTwo" aria-labelledby="headingThree">
+                    <div class=" d-flex justify-content-around"
+                      [ngClass]="{  head_ylw: cd.LTVScore >= '85',head_blk : cd.LTVScore >= '60' && cd.LTVScore <= '70', head_grn: cd.LTVScore >= '71' && cd.LTVScore <= '80', head_gry:cd.LTVScore < '60'  }">
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.SalesScore}}</h3>
+                        <span class="mt-0 mb-0">Sales</span>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.ServiceScore}}</h3>
+                        <span class="mt-0 mb-0">Service</span>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="mt-0 mb-0">{{cd.LTVScore}}</h3>
+                        <span class="mt-0 mb-0">LTV</span>
+                      </div>
+                    </div>
+
+                    <div class="p-lg-4 ">
+                      <div class="customer-details d-flex align-items-start">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="../../assets/images/default.png" >
+                        <div class="d-flex flex-column align-items-start ps-lg-3 ps-2 my-auto">
+                          <h6 class="mt-0 mb-0">{{cd.DataSince}}</h6>
+                          <h4 class="mt-0 mb-1" title="{{cd.UserName}}">{{(cd.UserName == undefined ? '--' : (
+                            (cd.UserName.toString() | slice:0:15) + (cd.UserName.toString().length > 15 ? '...' : '')
+                            ))}}</h4>
+                          <h5 class="mt-0 mb-0">{{(cd.Mobile == undefined) ? '--': (cd.Mobile[0] | slice:0:3) +
+                            (cd.Mobile[0].length>3? '-':'') + (cd.Mobile[0] | slice:3:6) + (cd.Mobile[0].length>3? '-':'') +
+                            (cd.Mobile[0] | slice:6:10)}}</h5>
+                          <a href="" style="cursor: pointer; text-transform: lowercase;" class="mt-0 mb-0 "
+                            title="{{cd.Email}}">
+                            <p style="font-size:0.7rem ;">
+                              {{(cd.Email == undefined ? '--' : ( (cd.Email.toString() | slice:0:20) +
+                              (cd.Email.toString().length > 20 ? '...' : '') )) }}
+                            </p>
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="sales-details mt-3">
+                        <h2 class="title mt-0 mb-0"><span>SALES</span>
+                          <hr />
+                        </h2>
+                        <div class="d-flex justify-content-between">
+                          <div>
+                            <h6 class="mt-0 mb-1">Vehicles ({{cd.CurrentTotalVehicles}})</h6>
+                            <h6 class="mt-0 mb-0">Lifetime</h6>
+                          </div>
+                          <div>
+                            <h5 class="mt-0 mb-0">${{cd.CurrentVehiclesPrice*1 | number}}</h5>
+                            <h5 class="mt-1 mb-0">${{cd.LifetimeTotalPrice*1 | number }}</h5>
+                          </div>
+                          <div>
+                            <div class="gross d-flex justify-content-between align-items-center mt-1">
+                              <h4 class="me-1">Gross</h4>
+                              <h6 class="float-end mt-0 mb-0">${{cd.CurrentVehiclesGross*1 | number}}</h6>
+                            </div>
+                            <div class="gross d-flex justify-content-between align-items-center">
+                              <h4 class="me-1 mt-1">Gross</h4>
+                              <h6 class="float-end mt-1 mb-0">${{cd.LifetimeGross*1 | number}}</h6>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="sales-details mt-3">
+                        <h2 class="title  mt-0 mb-0"><span>SERVICE</span>
+                          <hr />
+                        </h2>
+                        <div class="d-flex justify-content-between text-center ">
+                          <div>
+                            <h4 class="mt-0 mb-0 px-2" >YTD</h4>
+                            <h5 class="mt-0 mb-0" >${{cd.YTDServiceAmount[0]}}</h5>
+                          </div>
+                          <div>
+                            <h4 class="mt-0 mb-0" >3 Years</h4>
+                            <h5 class="mt-0 mb-0">{{cd.CurrentServiceAmount[0] | currency : 'USD' :
+                              'symbol' : '1.0-0' }}</h5>
+                          </div>
+                          <div>
+                            <h4 class="mt-0 mb-0" >Lifetime</h4>
+                            <h5 class="mt-0 mb-0">{{cd.ServiceLifetime[0] | currency : 'USD' : 'symbol'
+                              : '1.0-0' }}</h5>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="view text-center mt-4">
+                        <a style="cursor: pointer;" class="mt-0 mb-0 " (click)="fullHistory(cd,myModal)">View full history</a>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+            <!-- new-grid -->
+            <div class="customer-profile col-6" *ngFor="let cd of customersList ">
+              <div class="custm-card">
+                <div class="custm-head _chineseblack"
+                  [ngClass]="{'_chineseblack': (cd.LTVScore >= 85),'_lavendergray':(cd.LTVScore >= 79 && cd.LTVScore < 85),'_metallicgreen':(cd.LTVScore >= 70 && cd.LTVScore <= 79),'_harvestgold':(cd.LTVScore >= 55 && cd.LTVScore <= 69),'_robinblue':(cd.LTVScore < 55)}">
+                  <div class="row align-items-center">
+                    <div class="col-5 mt-2 d-flex flex-column justify-content-center align-items-center">
+                      <h6 class="m-0 p-0" title="{{cd.DataSince}}">{{(cd.DataSince.toString() | slice:9:14) +
+                        (cd.DataSince.toString() | slice:14:19) + (cd.DataSince.toString() | slice:-5:29)}}</h6>
+                      <div class="star">
+                        <ngb-rating  class="rating" [(rate)]="cd.starCount" [starTemplate]="t"  [readonly]="true" [max]="5">
+                          <ng-template let-fill="fill">
+                            <span class="star color{{cd.starCount}}" [class.filled]="fill === 100"
+                              [class.notfilled]="fill === 0" style="font-size:14px;">&#9733;</span>
+                          </ng-template>
+                        </ngb-rating>
+                      </div>
+                    </div>
+
+                    <div class="col-7">
+                      <div class="d-flex justify-content-between ">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.SalesScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">Sales</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.ServiceScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">Service</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h4 class="mt-0 mb-0" style="font-size:20px;">{{cd.LTVScore}}</h4>
+                          <span class="mt-0 mb-0" style="font-size:9px;">LTV</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="p-lg-3 p-2">
+                  <div class="custm-details d-flex align-items-start">
+                    <img class="img-fluid flex-shrink-0 rounded-circle"
+                      src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y">
+                    <div class="d-flex flex-column align-items-start ps-lg-3 ps-2">
+                      <h4 class="mt-0 mb-0" title="{{cd.UserName}}">{{(cd.UserName == undefined ? '--' : (
+                        (cd.UserName.toString() | slice:0:15) + (cd.UserName.toString().length > 15 ? '...' : '')
+                        ))}}</h4>
+                      <h5 class="mt-0 mb-0">{{(cd.Mobile == undefined) ? '--': (cd.Mobile | slice:0:3) +
+                        (cd.Mobile.length>3? '.':'') + (cd.Mobile | slice:3:6) + (cd.Mobile.length>3? '.':'') +
+                        (cd.Mobile | slice:6:10)}}</h5>
+                      <a style="cursor: pointer; text-transform: lowercase;" class="mt-0 mb-0 " title="{{cd.Email}}">
+                        <p style="font-size:0.7rem ;">
+                          {{(cd.Email == undefined ? '--' : ( (cd.Email.toString() | slice:0:25) +
+                          (cd.Email.toString().length > 25 ? '...' : '') )) }}
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="custm-bd my-3">
+                    <div *ngFor="let x of parseJsonToArray(cd.MultiVehicles); let i = index">
+
+
+                      <div class="sales-details" *ngIf="i == 0">
+                        <h2 class="title">{{cd.DealType == 'New' || cd.DealType == 'Used' ? 'PURCHASED' :(cd.DealType ==
+                          'Lease' ? 'LEASED' : '')}}</h2>
+                        <div class="hr"></div>
+                        <div class="row align-items-center">
+
+                          <div class="col-6">
+                            <h5 title="{{x.vehiclename}}"> <span>{{x.vehiclename}}</span> </h5>
+                          </div>
+                          <div class="col-6" title="{{x.vin}}">
+                            <h6>{{x.vin}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                      <div class="sales-details mt-3" *ngIf="i >= 1">
+                        <!-- <h2 class="title">{{cd.DealType == 'New' || cd.DealType == 'Used' ? 'PURCHASED' : (cd.DealType == 'Lease' ? 'LEASED' : '')}}</h2>
+                                  <div class="hr"></div> -->
+                        <div class="row align-items-center">
+                          <div class="col-6">
+                            <h5 title="{{x.vehiclename}}"><span>{{x.vehiclename}}</span> </h5>
+                          </div>
+                          <div class="col-6" title="{{x.vin}}">
+                            <h6>{{x.vin}}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="view text-center">
+                    <a style="cursor: pointer;" class="mt-0 mb-0 " (click)="fullHistory(cd,myModal)">View</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+       <!-- ng-template -->
+       <ng-template #myModal let-modal let-c="close" let-d="dismiss">
+        <div class=" col-lg-10 m-auto align-items-center">
+
+          <!-- <ng-template #myModal let-modal> -->
+            <div class="row" >
+              <div class="col-lg-8 m-auto" >
+                  <div class="dash-popup mt-4" [ngStyle]="{'opacity': Opacity == 'Y' ? '0.4' : '1' }"
+                  >
+                      <div class="dsh-head" *ngIf="custScoreCount.length>0"
+                        [ngClass]="{_chineseblack: custScoreCount[0].LTV >= '85',_lavendergray:custScoreCount[0].LTV >= '79' && custScoreCount[0].LTV < '85',_metallicgreen:custScoreCount[0].LTV >='70' && custScoreCount[0].LTV <= '79',_harvestgold:custScoreCount[0].LTV >= '55' && custScoreCount[0].LTV <= '69',_robinblue:custScoreCount[0].LTV < '55'}">
+                          <div class="row w-100">
+                              <div class="d-flex justify-content-between align-items-center w-70">
+                                  <img class="img-fluid flex-shrink-0 rounded-circle"
+                                      src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y">
+                                  <h5 class="mt-3 p-0">{{(custScoreCount[0].LTV >= 85)?'VIP':(custScoreCount[0].LTV >= 79 && custScoreCount[0].LTV < 85)?'Platinum':(custScoreCount[0].LTV >= 70 && custScoreCount[0].LTV <= 79)?'Emerald':(custScoreCount[0].LTV >= 55 && custScoreCount[0].LTV <= 69)?'Gold':(custScoreCount[0].LTV < 55)?'New':''}}</h5>
+                                  <!-- <div class="star"> -->
+                                      <!-- <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                      <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                      <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                      <img src="../../assets/images/star_wht.png" alt="" class="img-fluid">
+                                      <img src="../../assets/images/star_dis.png" alt="" class="img-fluid"> -->
+                                      <!-- <div> -->
+                                        <!-- <ng-template #t let-fill="fill">
+                                          <span class="star" [class.full]="fill === 100">
+                                            <span class="half" [style.width.%]="fill"><em
+                                                class="fa fa-star text-warning"></em></span><em
+                                              class="fa fa-star-o text-warning cursor"></em>
+                                          </span>
+                                        </ng-template> -->
+
+
+                                        <ngb-rating [(rate)]="currentRate"  [readonly]="true" [max]="5">
+                                          <ng-template let-fill="fill">
+                                            <span class="star color{{currentRate}}" [class.filled]="fill === 100" [class.notfilled]="fill === 0" style="font-size: 33px;">&#9733;</span>
+                                          </ng-template>
+                                        </ngb-rating>
+                                      <!-- </div> -->
+
+                                  <!-- </div> -->
+
+
+                                  <h6 class="mt-4 p-0">{{custScoreCount[0].DataSince}}</h6>
+                              </div>
+                              <div class="w-30 d-flex flex-column justify-content-center align-items-end">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <h4 class="m-0 p-0">{{custScoreCount[0].SalesCount}}</h4>
+                                    <span class="m-0 p-0">Sales</span>
+                                    <!-- <a  type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa fa-times" aria-hidden="true"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="w-30 d-flex flex-column justify-content-center align-items-end">
+                              <div class="d-flex flex-column justify-content-center align-items-center">
+                                  <h4 class="m-0 p-0">{{custScoreCount[0].ServiceCnt}}</h4>
+                                  <span class="m-0 p-0">Service</span>
+                                  <!-- <a  type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa fa-times" aria-hidden="true"></i></a> -->
+                              </div>
+                          </div>
+                              <div class="w-30 d-flex flex-column justify-content-center align-items-end">
+                                  <div class="d-flex flex-column justify-content-center align-items-center">
+                                      <h4 class="m-0 p-0">{{custScoreCount[0].LTV}}</h4>
+                                      <span class="m-0 p-0">LTV</span>
+                                      <!-- <a  type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa fa-times" aria-hidden="true"></i></a> -->
+                                  </div>
+                              </div>
+                          </div>
+
+                          <a type="button" class="close-btn ms-auto me-2" (click)="close()"><img src="../../assets/images/whiteclose.png"
+                                  alt=""></a>
+                      </div>
+                      <div class="dsh-bd p-4 px-0">
+                          <div class="container-fluid px-0">
+                              <div class="row px-5">
+                                  <div class="col-lg-9">
+                                      <div class="row">
+                                          <div class="col-lg-5" *ngIf="custDetails != undefined">
+                                              <h6 class="m-0 p-0">Customer ID: UC{{custDetails.UC_ID}}</h6>
+                                              <h4 class="mt-2 mb-1">{{custDetails.UserName}}</h4>
+                                              <h5 class="mt-0 mb-0">{{(custDetails.Mobile == undefined) ? '--': (custDetails.Mobile[0] |
+                                                slice:0:3) + (custDetails.Mobile[0].length>3?'-':'') + (custDetails.Mobile[0] |
+                                                slice:3:6) +
+                                                (custDetails.Mobile[0].length>3?'-':'') + (custDetails.Mobile[0] | slice:6:10)}}</h5>
+                                              <a  class="mt-0 mb-0">{{custEmail | titlecase}}</a>
+                                          </div>
+                                          <div class="col-lg-4" style="margin: 0px -35px;" *ngIf="custDetails != undefined">
+                                              <h3 class="mb-1 p-0">Address</h3>
+                                              <h6 class="m-0 p-0" style="font-size: 12px;white-space: nowrap;" >{{custDetails.UserAddress}}</h6>
+
+                                              <div class="d-flex flex-column justify-content-center align-items-start">
+                                                  <div class="d-flex flex-column justify-content-center align-items-center mt-1">
+                                                      <h2 class="m-0 p-0">--</h2>
+                                                      <h6 class="m-0 p-0">Probability Score</h6>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-3">
+                                            <div class="col-12" style="margin: 0px 134px;white-space: nowrap;">
+
+                                              <h3 class="mb-1 p-0">Contact Preference</h3>
+
+                                              <h6 class="m-0 p-0">Phone</h6>
+                                              <div class="d-flex flex-column justify-content-center align-items-start">
+
+                                                <div class="d-flex flex-column justify-content-center align-items-center mt-2">
+
+                                                  <h2 class="m-0 p-0">${{TotalSalesPrice*1 | number:'1.2-2'}}</h2>
+
+                                                  <h6 class="m-0 p-0">Total Sales Value</h6>
+
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3">
+                                      <div class="col-12" style="margin: 0px 87px;">
+                                          <h3 class="mb-1 p-0">SMS Opt-in</h3>
+                                          <!-- <label class="switch">
+                                          <input class="switch-input" type="checkbox"   [checked]="custDetails.OPtIn == 'Yes'" />
+
+                                          <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                          <span class="switch-handle"></span>
+                                        </label> -->
+                                        <label class="switch">
+                                        {{custDetails.OPtIn}}
+                                      </label>
+
+
+                                          <!-- <h6 class="m-0 p-0" *ngIf="custDetails != undefined">{{custDetails.OPtIn}}</h6> -->
+
+                                          <div class="d-flex flex-column justify-content-center align-items-start">
+                                              <div class="d-flex flex-column justify-content-center align-items-center mt-2">
+                                                  <h2 class="m-0 p-0">${{TotalServicePrice*1 | number:'1.2-2' }}</h2>
+                                                  <h6 class="m-0 p-0">Total Service Value</h6>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="mt-4 purchase-tbl">
+                                <table class="table table-responsive table-borderless ">
+                                    <thead>
+                                      <tr style="border: none;">
+                                        <th>
+                                          <img src="../../assets/images/purchase_icon.png" alt="">
+                                        </th>
+                                        <th style="padding-left: 0; color:#000;">
+                                          Purchase History
+                                        </th>
+                                        <th colspan="8">
+                                          &nbsp;
+                                        </th>
+                                      </tr>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Dealership</th>
+                                            <th scope="col">Vehicle</th>
+                                            <th scope="col"  style="text-align: center;padding-right: 21px;">Price</th>
+                                            <th scope="col">Deal Type</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">VIN</th>
+                                            <th scope="col">Trade</th>
+                                            <th scope="col">Contract</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="custPurchaseHistory.length>0">
+                                      <ng-container *ngFor="let ph of custPurchaseHistory; let i = index">
+                                        <tr *ngIf="purchaseButton || i <=rowsToShow" [ngClass]="{'inactive':(purchaseButton==false && i==3 &&  custPurchaseHistory.length>=5)}">
+                                          <td>&nbsp;</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{ph.PurchaseDate}}</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{ph.DealershipName}}</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{ph.Vehicle}}</td>
+                                            <td style="font-family: 'Roboto-Bold';text-align: right;">${{ph.Costprice*1 | number:'1.2-2'}}</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{(ph.DealType == 'New' || ph.DealType == 'Used') ? 'Purchase' : 'Lease'}}</td>
+                                            <td style="font-family: 'Roboto-Bold';">Current</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{ph.Vin}}</td>
+                                            <td style="font-family: 'Roboto-Bold';">{{ph.TradeType}}</td>
+                                            <td style="cursor:pointer;"  (click)="viewAccelfi(ph,Modal)">View</td>
+                                        </tr>
+                                      </ng-container>
+
+
+                                    </tbody>
+                                    <tbody *ngIf="custPurchaseHistory.length == undefined">
+                                      <tr>
+                                        <td colspan="12">No Data Found!</td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="text-center" *ngIf="custPurchaseHistory.length>0 && custPurchaseHistory.length>=5"><a (click)="purchaseToggle()" style="cursor: pointer;">{{purchaseButton ? 'Display less':'Display more'}}
+                                  <i class="fa-solid fa fa-angle-up " *ngIf="purchaseButton==true"></i>  <i class="fa-solid fa fa-angle-down"  *ngIf="purchaseButton==false"></i></a></div>
+                            </div>
+
+
+                            <div class="mt-4 purchase-tbl">
+                                <table class="table table-responsive table-borderless ">
+                                    <thead>
+                                      <tr style="border: none;">
+                                        <th>
+                                          <img src="../../assets/images/service_icon.png" alt="">
+                                        </th>
+                                        <th style=" color:#000;white-space: nowrap;">
+                                          Service History
+                                        </th>
+                                        <th colspan="8">
+                                          &nbsp;
+                                        </th>
+                                      </tr>
+                                        <tr>
+                                          <th>&nbsp;</th>
+                                            <th scope="col">Date</th>
+                                            <th>&nbsp;</th>
+                                            <th scope="col">Dealership</th>
+                                            <th>&nbsp;</th>
+                                            <th scope="col">Vehicle</th>
+                                            <th>&nbsp;</th>
+                                            <!-- <th>&nbsp;</th> -->
+
+                                            <!-- <th scope="col">Cost</th>
+
+                                            <th>&nbsp;</th>
+                                            <th scope="col">Service</th> -->
+                                            <th scope="col">Category</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            <!-- <th scope="col">VIN</th>
+                                            <th scope="col">Trade</th> -->
+                                            <th scope="col">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="custServiceHistory.length>0">
+                                      <ng-container *ngFor="let sh of custServiceHistory;let i = index">
+                                        <tr *ngIf="custHistButton || i <= rowsToShow" [ngClass]="{'inactive':(custHistButton==false && i==3 && custServiceHistory.length>=5)}">
+                                          <td>&nbsp;</td>
+                                            <td>{{sh.closedate1}}</td>
+                                            <td>&nbsp;</td>
+                                            <td>{{sh.DealershipName}}</td>
+                                            <td>&nbsp;</td>
+                                            <td>{{sh.Vehicle}}</td>
+                                            <td>&nbsp;</td>
+                                            <!-- <td>&nbsp;</td> -->
+                                            <!-- <td>${{sh.Cost}}</td>
+                                            <td>&nbsp;</td>
+                                            <td title="{{sh.ServiceInfo}}" style="text-transform: capitalize;">{{(sh.ServiceInfo == undefined) ? '---' : ((sh.ServiceInfo.toString() | slice:0:40 )+ (sh.ServiceInfo.toString().length > 40 ? '...' : ''))}}</td> -->
+                                            <td>{{sh.Category}}</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <!-- <td>{{sh.vin}}</td>
+                                            <td>{{sh.Category}}</td> -->
+                                            <td style="cursor:pointer;" (click)="ViewSerivice(sh,ServiceModal)">View</td>
+                                        </tr>
+                                      </ng-container>
+
+
+                                    </tbody>
+                                    <tbody *ngIf="custServiceHistory == 0 && showServiceHistory ">
+                                      <tr >
+                                        <td colspan="14" class="nodataFound">No Data Found!</td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="text-center" *ngIf="custServiceHistory.length>0 && custServiceHistory.length>=5"><a (click)="custHistoryToggle()" style="cursor: pointer;">{{custHistButton ? 'Display less':'Display more'}}
+                                  <i class="fa-solid fa fa-angle-up " *ngIf="custHistButton==true"></i>  <i class="fa-solid fa fa-angle-down "  *ngIf="custHistButton==false"></i></a></div>
+                            </div>
+
+
+                            <div class="mt-4 purchase-tbl">
+                              <table class="table table-responsive table-borderless ">
+                                  <thead>
+                                    <tr style="border: none;">
+                                      <th>
+                                        <img src="../../assets/images/offer_icon.png" alt="">
+                                      </th>
+                                      <th style="padding-left: 0; color:#000;">
+                                        Offer History
+                                      </th>
+                                      <th colspan="8">
+                                        &nbsp;
+                                      </th>
+                                    </tr>
+                                      <tr>
+                                        <th> &nbsp;</th>
+                                          <th scope="col">Date</th>
+                                          <th scope="col">Offer</th>
+                                          <th scope="col">Subject Line</th>
+                                          <th scope="col">Format</th>
+                                          <th scope="col">Response</th>
+                                          <th scope="col">Offer</th>
+                                          <!-- <th scope="col">VIN</th>
+                                          <th scope="col">Trade</th>
+                                          <th scope="col">Contract</th> -->
+                                      </tr>
+                                  </thead>
+
+                                  <tbody *ngIf="custOfferHistory.length == 1">
+
+                                      <tr>
+                                        <td colspan="8" class="nodataFound">No Data Found!</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+
+                              <!-- <div class="text-center"><a >Display more <i
+                                          class="fa-solid fa-chevron-down ms-2"></i></a></div> -->
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- </ng-template> -->
+
+
+        </div>
+      </ng-template>
+      <!-- Accelefi template  -->
+  <ng-template #Modal let-modal  >
+    <div class="accelefi-popup" >
+      <nav class="navbar navbar-light bg-light py-1" style="border-radius: 15px 15px 0px 0px;">
+        <div class="container-fluid" style="padding: 1.1rem;">
+            <!-- <a class="navbar-brand p-0 ps-3" href="#">
+                <img src="../../assets/images/Logo2.png" alt="logo" height="60">
+            </a> -->
+            <div class="mx-auto">
+                <h1>Deal Details</h1>
+            </div>
+            <div class="me-3 d-flex align-items-center">
+
+                <!-- <div class="d-flex align-items-center">
+                    <img src="../../assets/images/Calculator-Icon.png" alt="" class="img-fluid mx-1" style="height:40px">
+                    <img src="../../assets/images/Printer-Icon.png" alt="" class="img-fluid mx-2" style="height:40px">
+                </div> -->
+
+                  <!-- <a type="button"  [ngStyle]="{'opacity': Opacity == 'N'}" aria-label="Close" (click)="modal.close('Close click')" (click)="closeAccelefi()"><img src="../../assets/images/x_i.png" alt=""  ></a> -->
+                  <a type="button" [ngStyle]="{'opacity': Opacity == 'N'}" class="close-btn ms-auto" (click)="modal.close('Close click')" (click)="closePopup()"><img src="../../assets/images/x.png"  style="margin-left:50%;"
+                    alt=""></a>
+
+
+
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container-fluid head_bar" >
+            <div class="col-12 px-3">
+                <div class="row">
+                    <div class="col-lg-6 col-6 text-end pe-xl-4">
+                        <h2><span>Customer: </span>{{VehicleInfo.BuyerDetails.BuyerInfo[0].UserName}}</h2>
+                    </div>
+                    <div class="col-lg-6 col-6 text-start ps-xl-4">
+                        <h2><span>Deal: </span>{{VehicleInfo.BuyerDetails.PriceDetails[0].dealno}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid accelefi-app" style="background-color: #e2e2e2;" >
+            <div class="col-12 p-4" >
+                <div class="row">
+                    <div class="col-12 col-md-6 col-xl-6">
+                        <div class="box">
+                            <h2>Purchase Vehicle
+                              <!-- <span>edit</span> -->
+                            </h2>
+                            <hr>
+                            <div class="veh_det">
+                                <div class="row">
+                                    <div class="col-lg-5 col-12 text-center">
+                                        <img src="../../assets/images/Car.png" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="col-lg-7 col-12">
+                                        <div class="veh_brand mt-4 mt-lg-0">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-4 col-3">
+                                                    <img src="../../assets/images/Toyota-Logo.png" alt="">
+                                                </div>
+                                                <div class="col-lg-8 col-7">
+                                                 <h4 style="cursor:pointer;" title="{{VehicleName[0]}} {{VehicleName[1]}}">{{VehicleName[0]}} {{VehicleName[1]}}</h4>
+                                                 <h1 style="cursor:pointer;" title="{{VehicleName[2]}} {{VehicleName[3]}}">{{VehicleName[2]}} {{VehicleName[3]}} </h1>
+                                                    <!-- <h4>{{(VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:0:5 ) + (VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:5:11 )}}</h4>
+                                                    <h1>{{VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:11:20}}</h1> -->
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-4 col-3">
+                                                    <h5><span>Miles</span></h5>
+                                                </div>
+                                                <div class="col-lg-8 col-7">
+                                                    <h5>--</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-4 col-3">
+                                                    <h5><span>VIN</span></h5>
+                                                </div>
+                                                <div class="col-lg-8 col-7">
+                                                    <h5  style="cursor:pointer;" title="{{VehicleInfo.BuyerDetails.PurchaseDetails[0].vin}}">{{VehicleInfo.BuyerDetails.PurchaseDetails[0].vin}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-4 col-3">
+                                                    <h5><span>Color</span></h5>
+                                                </div>
+                                                <div class="col-lg-8 col-7">
+                                                    <h5>{{VehicleInfo.BuyerDetails.PurchaseDetails[0].color}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <h2>buyer information
+                              <!-- <span>edit</span> -->
+                            </h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-12">
+                                        <h3>Name</h3>
+                                        <h1>{{VehicleInfo.BuyerDetails.BuyerInfo[0].UserName}}</h1>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-12">
+                                        <h3>Title Address</h3>
+                                        <h4>{{(Address[0] == undefined) ? '--' :(Address[0]
+                                          .toString() | titlecase  )}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-12">
+                                        <h3>Title Address 2</h3>
+                                        <!-- <h4>{{(Address[1]== undefined) ? '--' :(Address[1]
+                                          .toString() | titlecase  )}}</h4> -->
+                                          <h4>--</h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-4">
+                                        <h3>City</h3>
+                                        <h4>{{(CityZip[0]== undefined) ? '--' :(CityZip[0]
+                                          .toString() | titlecase  )}}</h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3>State</h3>
+                                        <h4>{{(CityState[1]== undefined) ? '--' :(CityState[1]
+                                          .toString() | titlecase  )}}</h4>
+                                    </div>
+                                    <div class="col-5">
+                                        <h3>Zip</h3>
+                                        <h4>{{(CityState[2]== undefined) ? '--' :(CityState[2]
+                                          .toString() | titlecase  )}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-7">
+                                        <h3>Email Address</h3>
+                                        <h4>{{(VehicleInfo.BuyerDetails.BuyerInfo[0].Email == undefined) ? '--' :(VehicleInfo.BuyerDetails.BuyerInfo[0].Email.toString() | titlecase  )}}</h4>
+                                    </div>
+                                    <div class="col-5">
+                                        <h3>Phone</h3>
+                                        <h4>{{(VehicleInfo.BuyerDetails.BuyerInfo[0].Mobile == undefined) ? '--' :(VehicleInfo.BuyerDetails.BuyerInfo[0].Mobile.toString() | titlecase  )}}</h4>
+                                    </div>
+
+                                </div>
+                                <!-- <div class="row pt-2 justify-content-end">
+                                    <div class="col-8">
+                                        <button class="btn btn-lg org_btn active">credit application</button>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                        </div>
+
+                        <!-- CO-buyer information -->
+                        <!-- <div class="box">
+                            <h2>co-buyer information <span>edit</span></h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-12 d-flex align-items-center ">
+                                        <div class="me-4">
+                                            <p>Co-Signer?</p>
+                                        </div>
+                                        <button class="btn btn-sm">Yes</button>
+                                        <button class="btn btn-sm active">No</button>
+                                    </div>
+                                    <div class="row pt-4">
+                                      <div class="col-12">
+                                          <h3>Name</h3>
+                                          <h1>Christopher Petterson</h1>
+                                      </div>
+                                  </div>
+                                  <div class="row pt-3">
+                                      <div class="col-12">
+                                          <h3>Title Address</h3>
+                                          <h4>4589 Cactus Boulevard</h4>
+                                      </div>
+                                  </div>
+                                  <div class="row pt-3">
+                                      <div class="col-12">
+                                          <h3>Title Address 2</h3>
+                                          <h4>Suite 1102C</h4>
+                                      </div>
+                                  </div>
+                                  <div class="row pt-3">
+                                      <div class="col-4">
+                                          <h3>City</h3>
+                                          <h4>Scottsdale</h4>
+                                      </div>
+                                      <div class="col-3">
+                                          <h3>State</h3>
+                                          <h4>AZ</h4>
+                                      </div>
+                                      <div class="col-5">
+                                          <h3>Zip</h3>
+                                          <h4>45098</h4>
+                                      </div>
+                                  </div>
+                                  <div class="row pt-3">
+                                      <div class="col-7">
+                                          <h3>Email Address</h3>
+                                          <h4>c.petterson@emailclient.com</h4>
+                                      </div>
+
+                                      <div class="col-5">
+                                          <h3>Phone</h3>
+                                          <h4>+1 480-542-5403</h4>
+                                      </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                      <!-- insurance info -->
+                        <div class="box">
+                            <h2>insurance information
+                              <!-- <span>edit</span> -->
+                            </h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-12">
+                                        <h3>insurance company</h3>
+                                        <h1>--</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-6">
+                                        <h3>Agent</h3>
+                                        <h4>--</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>phone</h3>
+                                        <h4>--</h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-6">
+                                        <h3>Policy #</h3>
+                                        <h4 style="font-size: 12px;">--</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Deductible</h3>
+                                        <h4>--</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                           <!-- Finance Details -->
+
+                           <div class="box">
+                            <h2>finance details
+                              <!-- <span>edit</span> -->
+                            </h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-12">
+                                        <h3>lender</h3>
+                                        <h1>--</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-4">
+                                        <h3>term</h3>
+                                        <h4>{{VehicleInfo.BuyerDetails.FinanceDetails[0].term}} months</h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3>rate</h3>
+
+                                        <h4>  {{(VehicleInfo.BuyerDetails.FinanceDetails[0].apr == undefined) ? '0' :(VehicleInfo.BuyerDetails.FinanceDetails[0].apr.toString() | titlecase  )}}%</h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <h3>payment</h3>
+                                        <h4><strong> ${{VehicleInfo.BuyerDetails.FinanceDetails[0].paymentamt *1 | number:'1.2-2'}}</strong></h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                  <div class="col-4">
+                                      <h3 style="white-space: nowrap;">days to first payment</h3>
+                                      <h4>--</h4>
+                                  </div>
+                                  <div class="col-3">
+
+                                  </div>
+                                  <div class="col-4">
+                                      <h3 style="white-space: nowrap;">first payment date</h3>
+                                      <h4>{{(VehicleInfo.BuyerDetails.FinanceDetails[0].firstpaydate == undefined) ? '--' :
+                                        (VehicleInfo.BuyerDetails.FinanceDetails[0].firstpaydate.toString() | titlecase | date:'dd/MM/yy')}}</h4>
+                                  </div>
+                              </div>
+                                <!-- <div class="row ">
+                                    <div class="col-4">
+                                        <h3 style="white-space: nowrap;">days to first payment</h3>
+                                        <h4>45</h4>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <h3>first payment date</h3>
+                                        <h4>12/03/23</h4>
+                                    </div>
+                                </div> -->
+                                <!-- <hr> -->
+                                <!-- <div class="row justify-content-end">
+                                    <div class="col-6 ps-4">
+                                        <button class="btn btn-lg org_btn active">compare lenders</button>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                        <!-- <div class="box">
+                            <h2>trade vehicle <span>edit</span></h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4 ">
+                                    <div class="col-12 d-flex align-items-center ">
+                                        <div class="me-4">
+                                            <p style="white-space: nowrap;">Trading a vehicle?</p>
+                                        </div>
+                                        <button class="btn btn-sm">Yes</button>
+                                        <button class="btn btn-sm active">No</button>
+                                    </div>
+                                    <div class="veh_det mt-1">
+                                      <div class="row ">
+                                          <div class="col-lg-5 col-12 text-center" style="margin: 0 -10px;">
+                                              <img src="../../assets/images/Car.png" alt="" class="img-fluid">
+                                          </div>
+                                          <div class="col-lg-7 col-12">
+                                              <div class="veh_brand mt-4 mt-lg-0">
+                                                  <div class="row justify-content-center">
+                                                      <div class="col-lg-4 col-3">
+                                                          <img src="../../assets/images/Toyota-Logo.png" alt="">
+                                                      </div>
+                                                      <div class="col-lg-8 col-7">
+                                                        <h4 style="cursor:pointer;" title="{{VehicleName[0]}} {{VehicleName[1]}}">{{VehicleName[0]}} {{VehicleName[1]}} </h4>
+                                                        <h1 style="cursor:pointer;" title="{{VehicleName[2]}} {{VehicleName[3]}}">{{VehicleName[2]}} {{VehicleName[3]}} </h1>
+                                                           <h4>{{(VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:0:5 ) + (VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:5:11 )}}</h4>
+                                                    <h1>{{VehicleInfo.BuyerDetails.PurchaseDetails[0].Vehicle.toString() | slice:11:20}}</h1>
+                                                      </div>
+                                                  </div>
+                                                  <div class="row justify-content-center">
+                                                    <div class="col-lg-4 col-3">
+                                                        <h5><span>VIN</span></h5>
+                                                    </div>
+                                                    <div class="col-lg-8 col-7">
+                                                        <h5  style="cursor:pointer;" title="{{VehicleInfo.BuyerDetails.PurchaseDetails[0].vin}}">{{VehicleInfo.BuyerDetails.PurchaseDetails[0].vin}}</h5>
+                                                    </div>
+                                                </div>
+                                                  <div class="row justify-content-center">
+                                                      <div class="col-lg-4 col-3">
+                                                          <h5><span>Miles</span></h5>
+                                                      </div>
+                                                      <div class="col-lg-8 col-7">
+                                                          <h5>--</h5>
+                                                      </div>
+
+                                                  </div>
+
+
+                                              </div>
+
+                                          </div>
+                                          <hr>
+                                          <div class="row">
+                                            <div class="col-12">
+                                                <h3>Payoff Lender</h3>
+                                                <h1>--</h1>
+                                            </div>
+                                            <div class="col-3">
+                                              <h3 style="white-space: nowrap;">Trade Value</h3>
+                                              <h4>--</h4>
+                                          </div>
+                                          <div class="col-3">
+
+                                        </div>
+                                          <div class="col-5">
+                                              <h3>Payoff</h3>
+                                              <h4>--</h4>
+                                          </div>
+                                      </div>
+
+
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="box">
+                            <h2>Purchase information
+                              <!-- <span>edit</span> -->
+                            </h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-5">
+                                        <button class="btn org_btn"  [ngClass]="{'active':(VehicleInfo.BuyerDetails.PriceDetails[0].DEALTYPE=='New')}">new</button>
+                                        <button class="btn org_btn"  [ngClass]="{'active':(VehicleInfo.BuyerDetails.PriceDetails[0].DEALTYPE=='Used')}">used</button>
+
+                                        <!-- <div class="row pt-2 align-items-center justify-content-center">
+                                            <div class="col-12 certified">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">Certified</label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-12 col-xl-6 col-xxl-6 ps-xl-0">
+                                                <button class="btn service">
+                                                    <h6>In Service Date</h6>
+                                                    <h3>--</h3>
+                                                </button>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-2">
+
+                                    </div>
+                                    <div class="col-5">
+                                        <button class="btn org_btn "  [ngClass]="{'active':(VehicleInfo.BuyerDetails.PriceDetails[0].saletype=='Cash')}">cash</button>
+                                        <button class="btn org_btn " [ngClass]="{'active':(VehicleInfo.BuyerDetails.PriceDetails[0].saletype=='Finance')}">finance</button>
+                                        <button class="btn org_btn" [ngClass]="{'active':(VehicleInfo.BuyerDetails.PriceDetails[0].saletype=='Lease')}">lease</button>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div>
+                                            <h3><span> purchase price</span></h3>
+                                            <h4><label for="">${{VehicleInfo.BuyerDetails.PriceDetails
+                                              [0].costprice*1 | number:'1.2-2'}}</label> </h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>license fee</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>Doc fee</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>other fees</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>dealer adds</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>taxes</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div class="col-5">
+                                        <div>
+                                            <h3><span> MSRP</span></h3>
+                                            <h4 class="text-muted"><label for="">${{VehicleInfo.BuyerDetails.PriceDetails
+                                              [0].msrp *1 | number:'1.2-2'}}</label> </h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>trade value</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>trade payoff</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>trade difference</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>rebate</h3>
+                                            <h4>--</h4>
+                                        </div>
+                                        <div class="pt-3">
+                                            <h3>down payment</h3>
+                                            <h4>${{VehicleInfo.BuyerDetails.PriceDetails[0].cashdown *1 | number:'1.2-2'}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <h3>sub total</h3>
+                                        <h4><span>--</span></h4>
+                                    </div>
+                                    <!-- <div class="col-6 ps-4">
+                                        <button class="btn btn-lg org_btn active">add finance product<i class="fa-regular fa-plus"></i></button>
+                                    </div> -->
+                                </div>
+                                <hr>
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <h3>balance due</h3>
+                                        <h4><b>--</b></h4>
+                                    </div>
+                                    <!-- <div class="col-6 ps-4">
+                                        <button class="btn btn-lg org_btn active">submit to lenders</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- finance details1 -->
+                        <!-- <div class="box">
+                            <h2>finance details<span>edit</span></h2>
+                            <hr>
+                            <div class="details">
+                                <div class="row pt-4">
+                                    <div class="col-12">
+                                        <h3>lender</h3>
+                                        <h1>wells fargo bank</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-4">
+                                        <h3>term</h3>
+                                        <h4>72 months</h4>
+                                    </div>
+                                    <div class="col-3">
+                                        <h3>rate</h3>
+                                        <h4>8.99%</h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <h3>payment</h3>
+                                        <h4><strong> $698.98</strong></h4>
+                                    </div>
+                                </div>
+                                <div class="row pt-3">
+                                  <div class="col-4">
+                                      <h3 style="white-space: nowrap;">days to first payment</h3>
+                                      <h4>45</h4>
+                                  </div>
+                                  <div class="col-3">
+
+                                  </div>
+                                  <div class="col-4">
+                                      <h3 style="white-space: nowrap;">first payment date</h3>
+                                      <h4>12/03/23</h4>
+                                  </div>
+                              </div>
+                                <div class="row ">
+                                    <div class="col-4">
+                                        <h3 style="white-space: nowrap;">days to first payment</h3>
+                                        <h4>45</h4>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <h3>first payment date</h3>
+                                        <h4>12/03/23</h4>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-end">
+                                    <div class="col-6 ps-4">
+                                        <button class="btn btn-lg org_btn active">compare lenders</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+
+  </ng-template>
+
+<!-- Serivce template -->
+<ng-template #ServiceModal let-modal  >
+  <div  class="ServiceModal">
+    <nav class="navbar navbar-light bg-light py-3" style="border-radius: 15px 15px 0px 0px;">
+      <div class="container-fluid">
+
+          <div class="mx-auto">
+              <h1>Service Details</h1>
+          </div>
+          <div class="me-3 d-flex align-items-center">
+
+            <a type="button"  [ngStyle]="{'opacity': Opacity == 'Y'}" aria-label="Close" (click)="modal.close('Close click')" (click)="closePopup()"><img src="../../assets/images/x.png"
+              alt="" style="margin-left:50%;"></a></div>
+
+
+      </div>
+
+  </nav>
+
+      <div class="col-12 p-4" >
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-6">
+      <h5 class="srvcHeader">Date: </h5> <p  class="ServInfo">{{ServInfo.closedate1}}</p>
+      <h5 class="srvcHeader">Dealership: </h5><p class="ServInfo">{{ServInfo.DealershipName}}</p>
+      <h5 class="srvcHeader">Vehicle:</h5> <p class="ServInfo">{{ServInfo.Vehicle}}</p>
+      <h5 class="srvcHeader">RO Details:</h5>
+      <!-- <p  style="font-size: 0.9rem;font-family: 'Roboto-Regular'" class="hyperlink-button" (click)="ViewSeriviceClick(SeriviceInfo)">{{SeriviceInfo.ServiceInfo.ServiceHistory[0].ServiceDetails[0].ServiceInfo}}</p> -->
+    </div>
+    <div class="col-12 col-md-6 col-xl-6">
+      <h5 class="srvcHeader">VIN:</h5> <p class="ServInfo">{{ServInfo.vin}}</p>
+      <h5 class="srvcHeader">Cost:</h5> <p class="ServInfo">${{ServInfo.Cost*1 | number:'1.2-2'}}</p>
+      <h5 class="srvcHeader">RO Number:</h5> <p class="ServInfo">{{ServInfo.ronumber[0]}}</p>
+
+    </div>
+
+
+
+    </div>
+     <!-- Ro Details -->
+
+
+      <div class="RoDetails" >
+
+      <table >
+        <thead>
+          <tr style="border-bottom:3px solid #4877bb">
+
+            <th scope="col" >Description</th>
+            <th scope="col"  class="header">Labor Sale</th>
+            <th scope="col"  class="header">Sold Hours</th>
+          </tr>
+        </thead>
+
+            <tbody >
+              <tr *ngFor="let Ro of RoDetails | filter:RoValue">
+                <td *ngIf="Ro.opcodedescription!=undefined" class="description">{{Ro.opcodedescription}}</td>
+                <td *ngIf="Ro.opcodedescription!=undefined" class="laborSale">${{Ro.laborsale*1| number:'1.2-2'}}</td>
+                <td *ngIf="Ro.opcodedescription!=undefined" class="soldHours">{{Ro.soldhours}}Hrs</td>
+              </tr>
+              <ng-container *ngIf="(RoDetails | filter:RoValue) as result">
+                <td colspan="10" class="noRoDetails" *ngIf="result.length ==0 && hide">No RecordsFound!</td>
+              </ng-container>
+
+            </tbody>
+
+
+
+      </table>
+
+    </div>
+
+
+  </div>
+
+
+
+
+  </div>
+
+
+
+
+</ng-template>
+
+
+    </main>
+
+  </div>
+
+</div>
+
+

@@ -1,0 +1,102 @@
+
+
+.signin-box{
+    font-family:Gotham-Light;
+    text-align: center;
+
+    ::placeholder {
+        color: black;
+        opacity: 1;
+      }
+
+    .brand{
+        font-family:  GothamMedium;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+    h5{
+        margin: 0px;
+        padding: 0px;
+        }
+    .brand-name{
+        text-align: right;
+
+    .brand-logo{
+        width:25px;
+        height:25px;
+            } }
+
+    .brand-sub-name{
+        text-align: left;
+        }
+
+    .vl{
+        border-left: 1px solid grey;
+        height: 22px;
+        margin: 0px 10px;}
+    }
+
+    .signin-form{
+      
+        margin-top: 5rem !important;
+        h6{font-size: 1rem;font-family: 'GothamMedium'}
+    .form-group{
+        input{
+        width: 100%;
+        height: 2.4rem;
+        background: #edf0f7;
+        border: none;
+        border-radius: 1.625rem;
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+    .btn{
+        height: 2.4rem;
+        width: 100%;
+        border-radius: 50px;
+        font-size:1rem;
+        font-family: 'GothamBold';
+        background-color: #ec0318;
+        border: none;
+        outline: none;
+        }
+.btn:focus { outline: none !important; box-shadow: none !important; }
+}
+
+hr{
+    width: 70%;
+    margin:2rem auto; 
+}
+        span{
+            padding-left: 5px;
+            color: #3196e1;
+            cursor: pointer;
+            font-family: 'GothamMedium';
+            font-size: 12px;
+            text-decoration: underline;
+        }
+}
+label{font-size: 12px;font-family: 'GothamMedium'}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .button4 {background-color: #e7e7e7; color: black;border-radius:50px;}  
+
+
+    .active{background:#ff0000;
+        color: #fff;}

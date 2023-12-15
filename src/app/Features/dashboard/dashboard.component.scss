@@ -1,0 +1,609 @@
+.main{padding:1rem 5rem;}
+
+
+.dash-popup{
+    width: 250%;
+    .header{
+    background: #ffffff;
+    border-radius: 20px 20px 0px 0px;
+    border: 2px solid #edf1f4;
+    position: relative;
+    padding: 0.7rem 2rem;
+
+    .close-btn{
+        color: #d4d4d4;
+        font-size: 1.2vw;
+        position: absolute;
+        right: 20px;
+    }
+
+    .title{
+        font-family: 'Gotham\ Bold';
+        font-size: 1vw;
+        color: #444649;
+        line-height: 2rem;
+
+    .slash{
+    color: #33b3f3;
+    padding-right: 5px;
+            }
+        }}
+
+    .body{
+    background:#f8f9fb;
+    border-radius:0px 0px 20px 20px;
+    overflow: auto;
+    height: 70vh;
+     }
+
+._dropdwn {
+    float: left;
+    padding: 0 15px 0 10px;
+    overflow: hidden;
+    background: url(../../../assets/images/Arrow_dwnblk.png)  95% no-repeat;
+
+}
+
+._dropdwn,._dropdwn select {
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 100%;
+    height:30px;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+    color: #000;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none
+}
+
+
+._dropdwn select option {
+    background: #ccc!important;
+    color: #333;
+}
+
+.round {
+	display: block;
+	position: relative;
+	padding-left: 25px;
+	margin-bottom:5px;
+	cursor: pointer;
+	font-size:.9remx;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+		&:checked {
+			& ~ .checkmark {
+				background-color: #25c082;
+				&:after {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.checkmark {
+		&:after {
+            left: 7px;
+            top: 4px;
+            width: 6px;
+            height: 10px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+	}
+}
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #eee;
+	border-radius: 15px;
+	&:after {
+		content: "";
+		position: absolute;
+		display: block;
+	}
+}
+.scroll_det{height: calc(100vh - 180px);}
+
+
+.customer{width:190px; height: auto; border-radius: 15px; padding: 0;
+    .pic{
+    img{width:100%; height: 170px;}
+    }
+.customer_cont{background: #fff;border-radius:0 0 15px 15px; padding:.8rem;}
+}
+
+.accor_{width: calc(100% - 190px); height: auto; border-radius: 15px ;
+.accr_det{background: #fff; border-radius:15px;
+    .accr_head{background: url(../../../assets/images/accr_head_bg.png) no-repeat;height: 80px;
+    background-size: 100% 100%,cover;border-radius: 15px 15px 0 0;
+    .star{width: 30%; height: 80px;border-right: 1px solid #3a3b3d;padding: 1rem .5rem; display: flex;
+    align-items: center; justify-content: center;
+    img{margin: 0 .2rem;}
+    }
+    .sales,.service{width: 23%; height: 80px;border-right: 1px solid #3a3b3d;padding: 1rem .5rem; text-align: center;
+     color: #fff;
+    h2{font-size: 1.5rem; margin: 0;font-family: 'Gotham\ Bold';}
+    p{font-size: .8rem;text-transform: capitalize;}
+    }
+    .LT_value{width: 24%; height: 80px;padding: 1rem .5rem; text-align: center;color: #fff;
+    h2{font-size: 1.5rem; margin: 0;font-family: 'Gotham\ Bold';}
+    p{font-size: .8rem;text-transform: capitalize;}
+    }
+    }
+    .accr_cont{padding:2rem 2.5rem;
+      .customer_id{
+          span{font-size: .9vw;  font-family: 'Gotham\ Book\ Regular'}
+          h1{font-size: 1.6vw;font-family: 'Gotham\ Bold'; margin:.5rem 0 .2rem; text-transform: capitalize;}
+          h3{font-size: 1vw;font-family: 'Gotham\ Book\ Regular';margin: 0}
+          h6{font-size: 1vw;font-family: 'Gotham\ Bold';margin: 0;text-transform: capitalize;}
+          p{font-size: 1vw; font-family: 'Gotham\ Book\ Regular'; margin: 0;
+            span{color: #797979;}
+        }
+          a{color: #007cf0; text-decoration: none; font-size: 1vw;font-family: 'Gotham\ Book\ Regular';}
+      }
+    }
+}
+}
+
+.accordion-item{margin: 1rem 0; border-radius: 15px ;}
+.accordion-body{padding: 0; }
+.accordion-button:focus{border-bottom:1px solid #f1f3f4 !important; box-shadow: none !important; ;}
+.accordion-flush .accordion-item .accordion-button{border-radius: 15px ;padding: .8rem 1.5rem; font-size: .8rem;font-family: 'Gotham\ Medium\ Regular';}
+.accordion-button:not(.collapsed){color: #000 !important; background: #fff; border-radius: 15px 15px 0 0 !important; }
+.accordion-button:not(.collapsed)::after{background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");}
+.accordion-item:first-of-type{
+    border-radius: 15px ;
+}
+.accordion-item:first-of-type .accordion-button{border-radius: 15px 15px 0 0;}
+.accordion-item:last-of-type{border-radius: 15px ;}
+
+.data{
+    table{font-size: .7rem; color: #0f243d;margin-bottom: 0; border: #eaebec!important;}
+    table tr th:first-child,table tr td:first-child{padding-left: 3rem;}
+    table thead th{background:#fff; border-bottom: 1px solid #eaebec ;text-transform: capitalize; font-size: .7rem !important;font-family: 'Gotham\ Book\ Regular'; }
+    table tbody td{background: #f7f9fa; font-size: .7rem !important;font-family: 'GothamMedium';}
+    table tr:last-child td:first-child{border-radius: 0 0 0 15px;}
+    table tr:last-child td:last-child{border-radius: 0 0 15px 0;}
+    table th:last-child,table td:last-child,table th:nth-last-child(2),table td:nth-last-child(2){text-align: center;}
+}
+.veh_det{background: #f7f9fa; color: #000; padding: 1.5rem 2.5rem; border-radius: 0 0 15px 15px;
+   .car_det{width: 180px; height: auto;
+       .car_pic{
+           img{width: 100%; height: 100px; border-radius: 20px; margin-bottom: 1rem;}
+        }
+       .brand_{
+           img{height: 45px; margin-right: .3rem;}
+        }
+       .brand_det{
+           p{font-size: .9vw;font-family: 'Gotham\ Book\ Regular'; margin: 0;}
+           h6{font-size: 1.2vw!important;font-family: 'Gotham\ Medium\ Regular'; margin: 0;}
+       }
+   }
+   h6{font-size: .7rem;font-family: 'Gotham\ Book\ Regular';  margin: 0; font-weight: 600;}
+   p{font-size: .7rem;font-family: 'Gotham\ Book\ Regular';; margin-bottom: .8rem;
+    a{color: #007cf0; text-decoration: none;}
+}
+}
+
+}
+
+@media(max-width:575px){
+    .main{padding:1rem ;}
+    .scroll_cus{height: calc(100vh - 160px); overflow: auto; overflow-x: hidden;padding-right: .5rem;}
+    .customer_rating{width: 100%; padding:.5rem 0 !important; background: url(../../../assets/images/head_blk.png) no-repeat center/cover ;
+        border-radius: 15px; color: #fff; text-align: center;
+        img{margin-right: .2rem;}
+        h1{margin: 0;font-size:4vw;font-family: 'Gotham\ Bold'; }
+        p{margin: 0;font-size: 2.5vw;}
+    }
+    .cust_box{width: 100%; height: auto; background: #fff; border-radius: 15px; margin-top:1rem;
+        .cust_pic{width: 40%;
+         img{width: 100%; border-radius: 15px 0 0 0; ;}
+        }
+        .cust_det{width: 60%; align-self: center;padding: .2rem 1rem .5rem .5rem;
+            p{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; margin: 0 0 .4rem 0;}
+            h1{font-size: 5vw;font-family: 'Gotham\ Bold'; text-transform: capitalize;margin: 0 0 .3rem 0}
+            h6{font-size: 3vw;font-family: 'Gotham\ Book\ Regular';margin: 0}
+            span{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; color: #007cf0;}
+        }
+        .cust_cont{background: #f7f9fa; padding: 1rem; border-radius: 0 0 15px 15px;
+            h6{font-size: 2.5vw; font-family: 'Gotham\ Bold'; margin-bottom: .2rem;}
+            p{font-size: 2.1vw;font-family: 'Gotham\ Book\ Regular';margin: 0;
+            span{color: #ccc;}
+        }
+        }
+    }
+    .vehicle-details{
+        .car{
+
+            background-color: #f8f9fb;
+            img{
+                border-radius: 10px;
+                width: 100%;
+                height: 75px;
+                object-fit:cover;
+            }
+
+            .brand-name{
+
+            img{
+                height: 35px;
+            }
+
+                h4, h5{
+                    font-size: 0.8rem;
+                    color: black;
+                    font-family: 'Gotham\ Bold';
+                }
+            }
+            .price{
+                h3{
+                    font-size: 0.75rem;
+                    color: black;;
+                    font-family: 'Gotham\ Bold';
+                }
+                h2{
+                    font-size: 0.9rem;
+                    color: #6f767f;
+                    font-family: 'GothamMedium';
+                }
+            }
+            .contract{
+                    h4{
+                        font-size: 0.8rem;
+                        color: black;
+                        font-family: 'Gotham\ Bold';
+                    }
+
+
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'Gotham\ Bold';
+
+            }
+
+        }
+
+        .overview{
+            background: #ffffff;border-radius: 0 0 15px 15px;
+            h5{
+                font-size: 0.6rem;
+                color: black;
+                font-family: 'Gotham\ Bold';
+            }
+            h6{
+                margin-top: 0.3rem !important;
+                font-size: 0.6rem;
+                color: #6f767f;
+                font-family: 'GothamMedium';
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'GothamMedium';
+                position: relative;
+                margin-top: .3rem !important;
+            }
+        }
+
+    }
+    .benifits{
+        background-color: #f8f9fb; padding: 15px 15px 0 15px; border-radius: 0 0 15px 15px;
+        .row{
+            border-bottom: 2px solid #dedee2ad;
+        }
+        .details{
+            background-color: #ffffff; padding: .5rem 0;
+        }
+        h5{
+            font-size: 0.7rem;
+            color: black;
+            font-family: 'Gotham\ Medium\ Regular';
+        }
+        h6{
+            margin-top: 0.3rem !important;
+            font-size: 0.7rem;
+            color: #6f767f;
+            font-family: 'Gotham\ Book\ Regular';
+        }
+        h4, a{
+            font-size: 0.7rem;
+            text-decoration: none;
+            color: #8fc4f8;
+            font-family: 'Gotham\ Bold';
+            cursor: pointer;
+        }
+    }
+}
+@media(min-width:576px)and(max-width:767px){
+    .main{padding:1rem ;}
+    .scroll_cus{height: calc(100vh - 160px); overflow: auto; overflow-x: hidden;padding-right: .5rem;}
+
+    .customer_rating{width: 100%; padding:.5rem 0 !important; background: url(../../../assets/images/head_blk.png) no-repeat center/cover ;
+        border-radius: 15px; color: #fff; text-align: center;
+        img{margin-right: .2rem;}
+        h1{margin: 0;font-size: 4vw;font-family: 'Gotham\ Bold'; }
+        p{margin: 0;font-size: 2.5vw;}
+    }
+    .cust_box{width: 100%; height: auto; background: #fff; border-radius: 15px; margin-top:1rem;
+        .cust_pic{width: 40%;
+         img{width: 100%; border-radius: 15px 0 0 0; ;}
+        }
+        .cust_det{width: 60%; align-self: center;padding: .2rem 1rem .5rem .5rem;
+            p{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; margin: 0 0 .4rem 0;}
+            h1{font-size: 5vw;font-family: 'Gotham\ Bold'; text-transform: capitalize;margin: 0 0 .3rem 0}
+            h6{font-size: 3vw;font-family: 'Gotham\ Book\ Regular';margin: 0}
+            span{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; color: #007cf0;}
+        }
+        .cust_cont{background: #f7f9fa; padding: 1rem; border-radius: 0 0 15px 15px;
+            h6{font-size: 2vw; font-family: 'Gotham\ Bold'; margin-bottom: .2rem;}
+            p{font-size: 1.5vw;font-family: 'Gotham\ Book\ Regular';margin: 0;
+            span{color: #ccc;}
+        }
+        }
+    }
+    .vehicle-details{
+        .car{
+
+            background-color: #f8f9fb;
+            img{
+                border-radius: 10px;
+                width: 100%;
+                height: 100px;
+                object-fit:cover;
+            }
+
+            .brand-name{
+
+            img{
+                height: 35px;
+            }
+
+                h4, h5{
+                    font-size: 0.8rem;
+                    color: black;
+                    font-family: 'Gotham\ Bold';
+                }
+            }
+            .price{
+                h3{
+                    font-size: 0.75rem;
+                    color: black;;
+                    font-family: 'Gotham\ Bold';
+                }
+                h2{
+                    font-size: 0.9rem;
+                    color: #6f767f;
+                    font-family: 'GothamMedium';
+                }
+            }
+            .contract{
+                    h4{
+                        font-size: 0.8rem;
+                        color: black;
+                        font-family: 'Gotham\ Bold';
+                    }
+
+
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'Gotham\ Bold';
+
+            }
+
+        }
+
+        .overview{
+            background: #ffffff;border-radius: 0 0 15px 15px;
+            h5{
+                font-size: 0.6rem;
+                color: black;
+                font-family: 'Gotham\ Bold';
+            }
+            h6{
+                margin-top: 0.3rem !important;
+                font-size: 0.6rem;
+                color: #6f767f;
+                font-family: 'GothamMedium';
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'GothamMedium';
+                position: relative;
+                margin-top: .3rem !important;
+            }
+        }
+
+    }
+    .benifits{
+        background-color: #f8f9fb; padding: 15px 15px 0 15px; border-radius: 0 0 15px 15px;
+        .row{
+            border-bottom: 2px solid #dedee2ad;
+        }
+        .details{
+            background-color: #ffffff; padding: .5rem 0;
+        }
+        h5{
+            font-size: 0.7rem;
+            color: black;
+            font-family: 'Gotham\ Medium\ Regular';
+        }
+        h6{
+            margin-top: 0.3rem !important;
+            font-size: 0.7rem;
+            color: #6f767f;
+            font-family: 'Gotham\ Book\ Regular';
+        }
+        h4, a{
+            font-size: 0.7rem;
+            text-decoration: none;
+            color: #8fc4f8;
+            font-family: 'Gotham\ Bold';
+            cursor: pointer;
+        }
+    }
+}
+@media(min-width:768px)and(max-width:992px){
+    .main{padding:1rem ;}
+    .scroll_cus{height: calc(100vh - 160px); overflow: auto; overflow-x: hidden;padding-right: .5rem;}
+
+    .customer_rating{width: 100%; padding:.5rem 0 !important; background: url(../../../assets/images/head_blk.png) no-repeat center/cover ;
+        border-radius: 15px; color: #fff; text-align: center;
+        img{margin-right: .2rem;}
+        h1{margin: 0;font-size: 4vw;font-family: 'Gotham\ Bold'; }
+        p{margin: 0;font-size: 2.5vw;}
+    }
+    .cust_box{width: 100%; height: auto; background: #fff; border-radius: 15px; margin-top:1rem;
+        .cust_pic{width: 40%;
+         img{width: 100%; border-radius: 15px 0 0 0; ;}
+        }
+        .cust_det{width: 60%; align-self: center;padding: .2rem 1rem .5rem .5rem;
+            p{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; margin: 0 0 .4rem 0;}
+            h1{font-size: 5vw;font-family: 'Gotham\ Bold'; text-transform: capitalize;margin: 0 0 .3rem 0}
+            h6{font-size: 3vw;font-family: 'Gotham\ Book\ Regular';margin: 0}
+            span{font-size: 3vw;font-family: 'Gotham\ Book\ Regular'; color: #007cf0;}
+        }
+        .cust_cont{background: #f7f9fa; padding: 1rem; border-radius: 0 0 15px 15px;
+            h6{font-size: 2vw; font-family: 'Gotham\ Bold'; margin-bottom: .2rem;}
+            p{font-size: 1.5vw;font-family: 'Gotham\ Book\ Regular';margin: 0;
+            span{color: #ccc;}
+        }
+        }
+    }
+    .vehicle-details{
+        .car{
+
+            background-color: #f8f9fb;
+            img{
+                border-radius: 10px;
+                width: 100%;
+                height: 100px;
+                object-fit:cover;
+            }
+
+            .brand-name{
+
+            img{
+                height: 35px;
+            }
+
+                h4, h5{
+                    font-size: 0.8rem;
+                    color: black;
+                    font-family: 'Gotham\ Bold';
+                }
+            }
+            .price{
+                h3{
+                    font-size: 0.75rem;
+                    color: black;;
+                    font-family: 'Gotham\ Bold';
+                }
+                h2{
+                    font-size: 0.9rem;
+                    color: #6f767f;
+                    font-family: 'GothamMedium';
+                }
+            }
+            .contract{
+                    h4{
+                        font-size: 0.8rem;
+                        color: black;
+                        font-family: 'Gotham\ Bold';
+                    }
+
+
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'Gotham\ Bold';
+
+            }
+
+        }
+
+        .overview{
+            background: #ffffff;border-radius: 0 0 15px 15px;
+            h5{
+                font-size: 0.6rem;
+                color: black;
+                font-family: 'Gotham\ Bold';
+            }
+            h6{
+                margin-top: 0.3rem !important;
+                font-size: 0.6rem;
+                color: #6f767f;
+                font-family: 'GothamMedium';
+            }
+            a{
+                font-size: 0.6rem;
+                text-decoration: none;
+                color: #67a3de;
+                font-family: 'GothamMedium';
+                position: relative;
+                margin-top: .3rem !important;
+            }
+        }
+
+    }
+    .benifits{
+        background-color: #f8f9fb; padding: 15px 15px 0 15px; border-radius: 0 0 15px 15px;
+        .row{
+            border-bottom: 2px solid #dedee2ad;
+        }
+        .details{
+            background-color: #ffffff; padding: .5rem 0;
+        }
+        h5{
+            font-size: 0.7rem;
+            color: black;
+            font-family: 'Gotham\ Medium\ Regular';
+        }
+        h6{
+            margin-top: 0.3rem !important;
+            font-size: 0.7rem;
+            color: #6f767f;
+            font-family: 'Gotham\ Book\ Regular';
+        }
+        h4, a{
+            font-size: 0.7rem;
+            text-decoration: none;
+            color: #8fc4f8;
+            font-family: 'Gotham\ Bold';
+            cursor: pointer;
+        }
+    }
+}
+@media (max-width:1024px) {
+    .veh_det{
+        .car_det{width: 100%; height: auto; }
+    }
+}

@@ -1,0 +1,20 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" appClickOutside (onClickOutside)="closenav($event)"  id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+  <div class="offcanvas-header">
+      <button type="button" id="close" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <h6 class="offcanvas-title  d-sm-block mx-auto" id="offcanvas"><img src="assets/images/Swickard-Logo.png" class="img-fluid"></h6>
+  </div>
+  <div class="offcanvas-body px-0">
+      <nav id="sidebar">
+          <ul *ngFor="let ParentMod of ParentModules;let indexOfelement=index;" class="list-unstyled components">
+             <li><a href="#{{ParentMod.M_ID}}" data-toggle="collapse" aria-expanded="false">{{ParentMod.M_NAME}}</a>
+              <ng-container>
+                  <ul *ngFor="let SubModule of ParentMod.SUB_MODULE" class="collapse list-unstyled" id="{{ParentMod.M_ID}}">
+                        <li [ngClass]="{'active':  ActiveMenu === SubModule.SMOD_FILENAME}" (click)="SideTabClick(SubModule.SMOD_FILENAME)"><a>{{SubModule.SMOD_NAME}}</a></li>
+                  </ul>
+                </ng-container>
+             </li>
+          </ul>
+        </nav>
+  </div>
+
+</div>

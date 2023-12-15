@@ -1,0 +1,161 @@
+
+<!-- <div class="Refresh">Updated: 06/08/22 07:35:56 am <img src="../../../assets/images/refresh_icon.png" alt=""> </div> -->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<app-header></app-header>
+
+<!-- <button
+ printSectionId="print-list"
+ styleSheetFile="assets/roles.scss"
+
+ngxPrint>Print to PDF</button> -->
+
+<div class="container pe-0 mt-3" >
+
+  <div class="col-lg-12" >
+      <div class="d-flex" >
+        <!-- <div class="content"> -->
+            <table style="width: 100%;" *ngIf="showGrid"  id="print-list">
+                <tbody>
+                    <tr>
+                      <table class="sec-tbl1" >
+                          <thead>
+                              <tr >
+                                  <th>&nbsp;</th>
+                                <th style="width: 40%;">
+                                    <div class="row" style="float: left; padding: 3%;" >
+                                      <div class="getuser col-6" >
+                                        <label id="roleLabel" class="getuserlabel" >Roles</label>
+                                      </div>
+                                      <div class="AddIcon col-6">
+                                        <a style="cursor: pointer"><img src="../../assets/images/add.png" (click)="AddShowPanel()" id="icon"/></a>
+                                      </div>
+                                    </div>
+                                  </th>
+                                  <th style="width: 30%;" >
+                                    <div style="float: left" style="background:none;"></div>
+                                  </th>
+                                  <th style="width: 30%; text-align: end; ">
+                                      <div style="padding: 3%;">
+                                          <div class="search">
+                                              <input type="text" class="search_input" style="padding: 0.275rem 0.75rem;" placeholder="Search.."  [(ngModel)]="SearchValue">
+                                            </div>
+                                            <div style=" margin-top: -28px; margin-right: 10px;"><img
+                                                src="../../assets/images/search_icon.png"></div>
+                                      </div>
+                                  </th>
+                              </tr>
+                          </thead>
+                      </table>
+                    </tr>
+                    <tr class="pt-3 pb-3">
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <div class="sec-tbl table-responsive" >
+                          <table>
+                              <thead>
+                                  <tr>
+                                      <th rowspan="2"></th>
+                                      <th style="width: 40%;" class="RoleName">Name</th>
+                                      <th style="width: 30%;"  >Status</th>
+                                      <th style="width: 30%;" >Edit</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody >
+                                  <tr class="title even" id="titleeven" *ngFor="let data of RolesData | filter: SearchValue" >
+                                      <td><span>&nbsp;</span></td>
+                                      <td style="width: 40%;" class="RoleName">{{data.RoleName}}</td>
+                                      <td style="width: 30%;" id="Action" [ngStyle]="{'color':data.RoleStatus=='Y' ? 'green' : 'red' }" >
+                                        {{data.RoleStatus =='Y'?'Active':'In-Active'}}
+                                      </td>
+                                      <td style="width: 30%;" ><img src="../../assets/images/edit_icon.png" style="cursor: pointer;" (click)="EditShowPanel(data)"  alt="" id="edit_img"></td>
+                                  </tr>
+
+                                <ng-container *ngIf="(RolesData | filter:SearchValue) as result">
+                                  <td style="text-align: center; color:red; font-size: medium;" colspan="10" *ngIf="result.length ==0 && hide">No data found</td>
+                              </ng-container>
+                                  <tbody>
+                              </table>
+
+                      </div>
+                    </tr>
+                </tbody>
+            </table>
+          <!-- </div> -->
+            <!-- <ng-template #ifNotShow >
+                <tr *ngIf="NoDetailFound">
+                  <td colspan="4" class="NoDataFound"><label>No Details Found </label></td>
+                </tr>
+            </ng-template> -->
+      </div>
+      <div class="container " *ngIf="showAddRoles">
+        <nav class="navbar navbar-light bg-light mb-4">
+          <span class="navbar-brand mb-0 ">{{this.AddSave ? 'Add Role':'Edit Role'}}</span>
+        </nav>
+        <div class="pt64 ">
+           <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-md-offset-4">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3 class="panel-title"></h3>
+                      </div>
+                      <div class="panel-body">
+                          <form [formGroup]="RolesForm" (ngSubmit)="onSubmit()">
+                              <div class="container">
+                                  <div class="row pb-4">
+                                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                          <!-- <label for="role" class="pb-2">{{this.RolesID==this.AddRoles? 'ADD Roles':'EDIT Roles'}}</label> -->
+                                          <label for="role" class="pb-2">Roles:</label>
+
+                                          <input  type="text" [class.is-invalid]="submitted && f['RoleName'].invalid" class="form-control  w-100" placeholder="Enter role"  formControlName="RoleName" name="RoleName" required autocomplete="off">
+
+                                          <!-- <small class="errormessage"
+                                          *ngIf="submitted && RolesForm.controls['RoleName'].hasError('required')">
+                                          Description is required*
+                                      </small> -->
+                                      <div *ngIf="submitted && f['RoleName'].invalid" class="errormessage">
+                                        <div *ngIf="f['RoleName'].errors && f['RoleName'].errors['required']">Role Name is required*</div>
+
+                                    </div>
+                                      </div>
+                                  </div>
+                                  <div class="row pb-4">
+                                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngIf="StatusHide">
+                                        Status: <label [ngStyle]="{'color': Status=='Y' ? 'green' : 'red' }" >
+
+                                              <!-- <input style="cursor: pointer;" type="checkbox"     name="RoleStatus" formControlName="Role_Status">&nbsp; -->
+                                              <input
+                                              type="checkbox" [checked]="Status=='Y'"
+                                              (change)="checkStatus($event)">{{Status =='Y' ? 'Active':'In-Active'}}
+
+                                           </label>
+                                      </div>
+                                    </div>
+                                  <div class="col-lg-12 pt-lg-4 pl-lg-4">
+                                      <div class="row">
+                                        <div class="col-lg-2" >
+                                          <button type="submit"class="savebutton" >Save</button>
+                                          <!-- <button type="submit" class="savebutton" (click)=" AddRole()">Save</button> -->
+                                        </div>
+                                        <!-- <div class="col-lg-2" *ngIf="EditSave">
+                                          <button  type="submit"  class="savebutton" (click)="UpdateRole()">Save</button>
+                                        </div> -->
+                                        <div class="col-lg-2">
+                                          <input type="button" class="savebutton"  Value="Cancel" (click)="onclose()"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<!-- <button (click)="makePDF()">download</button> -->

@@ -1,0 +1,105 @@
+.txt
+{
+   font-size: 0.8rem;
+              color: black;
+              font-family: 'RobotoCondensed-Regular';
+}
+
+.bldtxt
+{
+   font-size: 1rem;
+              color: black;
+              font-family: 'RobotoCondensed-Bold';
+}
+.headtxt
+{
+   font-size: 0.9rem;
+              color: black;
+              font-family: 'RobotoCondensed-Bold';
+}
+
+.modal-header{
+   h5 {
+      font-family: "RobotoCondensed-Regular";
+      font-size: 1.2rem;
+      color: #333;
+      line-height: 2rem;
+
+      span {
+        color: #33b3f3;
+        padding-right: 5px;
+      }
+    }
+}
+
+.addIcon{
+   font-family: "RobotoCondensed-Bold";
+   text-align: end;
+   cursor: pointer;
+}
+
+table {
+   white-space: nowrap;
+   font-family: "RobotoCondensed-Regular";
+   border-collapse: separate;
+   border-spacing: 0 !important;
+   width: 100%;
+
+   table,
+   td,
+   th {
+     border-collapse: collapse;
+     font-size: 0.8rem;
+   }
+
+   th {
+     font-family: "RobotoCondensed-Bold";
+     padding: 5px 16px;
+   }
+
+   td {
+     font-family: "RobotoCondensed-Regular";
+     padding: 5px 16px;
+     text-align: left;
+   }
+
+   thead {
+     background: #ffffff;
+     position: sticky;
+     z-index: 9;
+     top: 0;
+     box-shadow: inset 0 -2px 0 #2d91f1;
+
+     tr:first-child {
+       color: #33b3f3 !important;
+     }
+
+   }
+
+   tbody {
+     tr:nth-child(odd) {
+       background: #ffffff;
+     }
+
+     tr:nth-child(even) {
+       background: #f3f6fb;
+     }
+   }
+ }
+
+
+//  .modal:nth-of-type(even) {
+//   z-index: 1052 !important;
+// }
+// .modal-backdrop.show:nth-of-type(even) {
+//   z-index: 1051 !important;
+// }
+  .add
+  {
+    label
+    {
+      font-family: "RobotoCondensed-Bold";
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  }

@@ -1,0 +1,391 @@
+
+<!-- new -->
+
+<!-- ////////////////////////////////// REPORT STORES/////////////////////////////// -->
+
+<div class="container-fluid  d-flex justify-content-start align-items-center mt-0" >
+<div class="col-lg-12 position-relative">
+  <div class="row">
+      <div class="col-lg-3">
+          <div class="reports-controls">
+              <div class="header">
+                  <h5 class="title m-0"><img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS</h5>
+                  <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+              </div>
+              <div class="body">
+                  <div class="list-group">
+                  <a class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-end row">
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/images/Stores.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start"  (click)="multipleorsingle('Section','S')"
+                                  [ngClass]="{'bg-color':Section.indexOf('S')>=0, 'bg-color-wt':Section.indexOf('S')<0}"
+                                  (click)="dealerData()">
+                                      <h6 class="m-0 p-0">Stores</h6>
+                                      <p class="m-0 p-0">Choose how you want to group your results</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/calendar-icon.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Timeframe</h6>
+                                      <p class="m-0 p-0">Choose the period or date range to report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/Stores.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Sales Value</h6>
+                                      <p class="m-0 p-0">Choose the stores or groups for you report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a  class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn" (click)="multipleorsingle('Section','BR')"
+                      [ngClass]="{'bg-color':Section.indexOf('BR')>=0, 'bg-color-wt':Section.indexOf('BR')<0}"
+                      (click)="BrandVal()" (click)="allDealerslist('0')">
+                          <div class="row d-flex align-items-center justify-content-center ">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/images/Stores.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Brand</h6>
+                                      <p class="m-0 p-0">Choose how you want to group your results</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/images/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="row d-flex align-items-center justify-content-center">
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/Data-source.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Filters</h6>
+                                      <p class="m-0 p-0">Choose additional filters for type and status of deals</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+                  </div>
+              </div>
+              <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center ">
+                  <button type="button" class="btn btn-view mx-1">View Report</button>
+                  <button type="button" class="btn btn-save mx-1">Save to Favourites</button>
+                  </div>
+                  <div class="cancel-txt"><a href="#">Cancel</a></div>
+              </div>
+          </div>
+      </div>
+<!-- ////////////////////////////////// REPORT STORES/////////////////////////////// -->
+      <div class="col-lg-8 ">
+          <div class="report-stores">
+              <div class="header text-center">
+              <div class="row mt-2">
+                  <!-- <div class="col-lg-3">Groups</div> -->
+                  <div class="col-lg-3" *ngIf="isBrand">Brands</div>
+                  <div class="col-lg-3" *ngIf="isStore">Stores</div>
+                  <!-- <div class="col-lg-3"></div> -->
+              </div>
+                  <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+              </div>
+              <div class="body px-5 py-4">
+              <div class="row">
+                  <!-- <div class="col-lg-6"> -->
+                     <!-- <div class="col-lg-6"> -->
+                      <!-- <button type="button" class="btn report-btn">All Groups</button>
+                      <button type="button" class="btn report-btn">Northwest Region</button>
+                      <button type="button" class="btn report-btn">Western Region</button>
+                      <button type="button" class="btn report-btn">Southwest Region</button>
+                      <button type="button" class="btn report-btn">Midwest Region</button>
+                      <button type="button" class="btn report-btn">Northeast Region</button>
+                      <button type="button" class="btn report-btn">Southeast Region</button>
+                      </div> -->
+                      <div class="row grp-brands">
+
+                        <div class="col-lg-6 stores" *ngIf="isStore">
+                          <div class="col-lg-6 w-80">
+                          <button type="button" class="btn report-btn mb-10" value="0"
+                          [ngClass]="{active: selectedAttributes.length == storesList.length}"
+                        (click)="allDealerslist('0')">All Stores</button>
+                          </div>
+
+                      <div class="stores-grid" *ngFor="let str of storesList;let i=index">
+                          <button type="button" class="btn report-btn"   [ngClass]="{active: selectedAttributes.indexOf(str.AS_ID) >= 0}"
+                            (click)="dealerlist($event,str)">{{str.AS_Dealername}}</button>
+
+                      </div>
+                      </div>
+
+                      <div class="row mb-4" *ngIf="isBrand">
+                        <div class="col-lg-3" *ngFor="let br of brandsList;let i=index">
+                          <div>
+                            <button type="button" class="btn report-btn"
+                              [ngClass]="{active: selectedBrandsNames.indexOf(br.brand_name) >= 0}"
+                              (click)="selectBrand(br)">{{br.brand_name}}</button>
+                            <!-- <button type="button" class="btn btn-primary grp-btn" (click)="multipleselect('ST','M')" [ngClass]="{'bg-color':selecttarget.indexOf('M')>=0, 'bg-color-wt':selecttarget.indexOf('M')<0}">{{str.DealerShipName}}</button> -->
+
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- <div class="col-lg-6" *ngIf="isBrand">
+                          <button type="button" class="btn report-btn">All Brands</button>
+                          <button type="button" class="btn report-btn">Acura</button>
+                          <button type="button" class="btn report-btn">BMW</button>
+                          <button type="button" class="btn report-btn">Chevrolet</button>
+                          <button type="button" class="btn report-btn">Ferrari</button>
+                          <button type="button" class="btn report-btn">Fiat</button>
+                          <button type="button" class="btn report-btn">Ford</button>
+                          <button type="button" class="btn report-btn">GMC</button>
+                          <button type="button" class="btn report-btn">Jaguar</button>
+                          <button type="button" class="btn report-btn">Lamborghini</button>
+                          <button type="button" class="btn report-btn">Land Rover</button>
+                          <button type="button" class="btn report-btn">Lexus</button>
+                          <button type="button" class="btn report-btn">Lincoln</button>
+                          <button type="button" class="btn report-btn">Maruti</button>
+                          <button type="button" class="btn report-btn">Maserati</button>
+                          <button type="button" class="btn report-btn">McLaren</button>
+                      </div> -->
+
+                  </div>
+                  <!-- </div> -->
+
+
+              </div>
+              </div>
+              <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center justify-content-center">
+                  <button type="button" class="btn btn-sm-save mx-2" (click)="apply()">Save</button>
+                  <div class="cancel-txt mb-2 mx-2"><a href="#" class="m-0 p-0">Cancel</a></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ////////////////////////////////// REPORT GROUPING /////////////////////////////// -->
+
+
+<!-- ////////////////////////////////// REPORT FILTERS /////////////////////////////// -->
+
+<div class="container-fluid d-none d-flex justify-content-start align-items-center mt-4" >
+<div class="col-lg-12 position-relative ">
+  <div class="row">
+      <div class="col-lg-2">
+          <div class="reports-controls">
+              <div class="header">
+                  <h5 class="title m-0"><img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS</h5>
+                  <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+              </div>
+              <div class="body">
+                  <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-end row">
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/Groupings.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Groupings</h6>
+                                      <p class="m-0 p-0">Choose how you want to group your results</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/calendar-icon.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Timeframe</h6>
+                                      <p class="m-0 p-0">Choose the period or date range to report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="d-flex align-items-center justify-content-center row">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/Stores.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Stores</h6>
+                                      <p class="m-0 p-0">Choose the stores or groups for you report</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="row d-flex align-items-center justify-content-center ">
+                              <div class="col-3"><img class="rpt-icon" src="../../assets/team.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Teams</h6>
+                                      <p class="m-0 p-0">Choose how you want to group your results</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+
+                  <a href="#" class="list-group-item list-group-item-action p-3 ps-4">
+                      <div class="list-btn">
+                          <div class="row d-flex align-items-center justify-content-center">
+                              <div class="col-3"> <img class="rpt-icon" src="../../assets/Data-source.png" alt=""></div>
+                              <div class="col-7">
+                                  <div class="text-start">
+                                      <h6 class="m-0 p-0">Filters</h6>
+                                      <p class="m-0 p-0">Choose additional filters for type and status of deals</p>
+                                  </div>
+                              </div>
+                              <div class="col-2 m-auto text-end">
+                                  <img class="arrow-icon" src="../../assets/double-arrow-right.png" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+                  </div>
+              </div>
+              <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center ">
+                  <button type="button" class="btn btn-view mx-1">View Report</button>
+                  <button type="button" class="btn btn-save mx-1">Save to Favourites</button>
+                  </div>
+                  <div class="cancel-txt"><a href="#">Cancel</a></div>
+              </div>
+          </div>
+      </div>
+<!-- ////////////////////////////////// REPORT FILTERS /////////////////////////////// -->
+      <div class="col-lg-4">
+          <div class="report-filters">
+              <div class="header">
+                  <h5 class="title m-0"><img src="" alt="">Report Filters</h5>
+                  <a href="" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+              </div>
+              <div class="body py-2">
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">New Used:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">New</button>
+                          <button type="button" class="btn report-btn ">Used</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Retail/Lease:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Retail</button>
+                          <button type="button" class="btn report-btn ">Lease</button>
+                          <button type="button" class="btn report-btn ">Wholesale</button>
+                          <button type="button" class="btn report-btn ">Misc</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Deal Status:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Delivered</button>
+                          <button type="button" class="btn report-btn ">Booked</button>
+                          <button type="button" class="btn report-btn ">Finalized</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Source:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Transaction</button>
+                          <button type="button" class="btn report-btn ">GL</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Chargebacks:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Include</button>
+                          <button type="button" class="btn report-btn ">Exclude</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Pack/Holdback:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Include</button>
+                          <button type="button" class="btn report-btn ">Exclude</button>
+                      </div>
+                  </div>
+                  <div class="filter px-5">
+                      <div class="col-4"><h6 class="m-0 p-0">Report Totals:</h6></div>
+                      <div class="col-8 report-grid">
+                          <button type="button" class="btn report-btn ">Top</button>
+                          <button type="button" class="btn report-btn ">Bottom</button>
+                      </div>
+                  </div>
+              </div>
+              <!-- <div class="footer p-3 mb-2">
+                  <div class="text-center d-flex align-items-center justify-content-center">
+                  <button type="button" class="btn btn-sm-save mx-2">Save</button>
+                  <div class="cancel-txt mb-2 mx-2"><a href="#" class="m-0 p-0">Cancel</a></div>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+

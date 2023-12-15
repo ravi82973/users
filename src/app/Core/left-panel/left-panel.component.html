@@ -1,0 +1,104 @@
+<div class="menu-trigger" (click)="closenav($event)">
+  <i class="fas fa-bars" style="color: #66bf8a; font-size: 20px;"></i>
+</div>
+
+<div class="side-menu" *ngIf="isOpen" [@sideMenu] >
+  <!-- <div class="menu-close" id="sidebarEvent" (click)="closenav($event)" style="background-color:#1a2229;">
+    <i class="fas fa-times" style="color: #fff; font-size: 20px;"></i>
+   
+  </div> -->
+  <div class="menu-item" style="background-color: #1a2229;">
+
+    <div class="menu-close"  >
+      <!-- <div class="d-flex " >
+          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" style="border-radius: 50%; width: 50px; height: 50px;">
+            <div >
+             <div class="row">
+               <h6 class="mb-0 pb-0 d-inline-block text-truncate" style="color: #fff; font-size: 17px; max-width: 142px; ">Thumpala Murali Satyanarayana</h6>
+             </div>
+             <div >
+             <span ><img src="../../../assets/Images/id-card.png"></span>
+             <a style="padding-left: 10px;"><i class="fa fa-envelope"
+               style="position: relative;top: 3px; font-size:17px; color: #18a4cc;"></i></a>
+             <a class="logout" >
+                <i class="fas fa-power-off "></i>
+            </a>  
+            </div>
+           </div>
+         </div>     -->
+
+
+
+      <div class="col-md-12 " >
+        <div class="row" *ngFor="let user of usersData">
+          <div class="col-md-4" style="padding-left: 42px;">
+            <a href="user_profile">
+              <img class="img-profile mCS_img_loaded" alt="" src="{{image}}/{{user.U_PROFILE_IMAGE}}" onerror="if (this.src != '../../../assets/Images/noprofileImage.webp') this.src = '../../../assets/Images/noprofileImage.webp';"
+                style="border-radius: 50%; width: 50px; height: 50px;"></a>
+          </div>
+          <div class="col-md-8">
+            <div class="user-user"  >
+              <a href="user_profile"  style="text-decoration: none;">
+                <div style=" color:white;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 150px;">{{user.U_NAME}}</div>
+              </a>
+              <div style="width: 75%;position:relative; text-align: justify; padding-left: 10px;">
+                <span  style="text-align: justify;"><img src="../../../assets/Images/id-card.png"></span>
+
+
+                <span class="notification" style="padding-left: 10px;">
+                  <a href="#" class="popup" title="No Notifications" id="datanotifcations1" style="background:none;">
+                    <i class="fa fa-envelope " style="/*color: #eee;*/position: relative; top: 2px; font-size:16px;"
+                      aria-hidden="true"></i>
+                  </a>
+                </span>
+                
+                  <span class="lgrobtn" (click)="LogOut()" style="font-size:11px; float: right; padding-top: 5px;">
+                    <a href="#"  >
+                    <i class="fa fa-power-off fa-2x" aria-hidden="true" style="color:#982020;">
+                    </i>
+                  </a>
+                  </span>
+                
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      </div>
+      
+    </div>
+  </div>
+  
+          <div class="wrapper d-flex">
+            <div class="sidebar"> <small class="text-muted px-3">Employee</small>
+                <ul>
+                    <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                    <li><a href="#"><i class="fas fa-location-arrow"></i> Vacation Requests </a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Favorites </a></li>
+                </ul> <small class="text-muted px-3">Company</small>
+                <ul>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Message Center</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Events Info</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Spyhre Team</a></li>
+                </ul> <small class="text-muted px-3">Projects</small>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Project Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-info"></i> QA Info</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Work Hours</a></li>
+                    <li><a href="#"><i class="fas fa-signal"></i> Report</a></li>
+                </ul>
+                <a>
+                  <small class="text-muted px-3">Support Requests</small>
+                </a>
+            </div>
+        </div> 
+          
+</div>
+
+
